@@ -10,24 +10,27 @@ Architecture Studio exists to make architects faster, not to replace their judgm
 
 ## Link to Sources
 
-- **Every data point from an external source gets a link.** Not just a name — a URL the user can click to verify. "Source: NYC Open Data" is not enough. "Source: [NYC PLUTO 24v1](https://data.cityofnewyork.us/resource/64uk-42ks.json)" is.
-- **When a link isn't available**, cite the source precisely enough to find it: publisher, title, edition, section number, date.
-- **When using bundled data** (IBC tables, zoning rules, workplace benchmarks), state what's bundled and what edition. The user should know whether the data is current for their jurisdiction.
+- **Every data point from an external source gets a link.** Not just a name — a URL the user can click to verify. "Source: Landgate" is not enough. "Source: [Landgate Map Viewer Plus](https://maps.landgate.wa.gov.au/maps-landgate/registered/)" is.
+- **When a link isn't available**, cite the source precisely enough to find it: publisher, title, edition, section / clause number, date.
+- **When using bundled data** (NCC tables, R-Codes provisions, LPS extracts), state what's bundled and what edition/version. The user should know whether the bundled data is current for the LGA in question — LPSs and LPPs change frequently.
 
 ## Cite the Code
 
-- **Building code references must include a public link** when one exists. Use government-published sources first:
-  - NYC Building Code: [codelibrary.amlegal.com](https://codelibrary.amlegal.com/codes/newyorkcity/latest/NYCbldg/)
-  - California Building Code: [govt.westlaw.com/calregs](https://govt.westlaw.com/calregs/) (Title 24, Part 2)
-  - Base IBC (read-only): [codes.iccsafe.org](https://codes.iccsafe.org/)
-  - Other jurisdictions: [UpCodes](https://up.codes/)
-- **Never cite a code section without the edition year.** `IBC §1004.5` is ambiguous. `IBC 2021 §1004.5` is verifiable.
+- **Building, planning, and standards references must include a public link** when one exists. Use government-published sources first:
+  - National Construction Code (NCC): [ncc.abcb.gov.au](https://ncc.abcb.gov.au/)
+  - R-Codes (SPP 7.3): [WAPC — R-Codes](https://www.wa.gov.au/government/publications/state-planning-policy-73-residential-design-codes)
+  - WA Planning Acts and Regulations: [legislation.wa.gov.au](https://www.legislation.wa.gov.au/)
+  - Local Planning Schemes: each LGA's website (e.g. [City of Fremantle LPS4](https://www.fremantle.wa.gov.au/))
+  - Australian Standards (purchase / preview): [store.standards.org.au](https://store.standards.org.au/)
+  - State Register of Heritage Places: [inHerit](https://inherit.dplh.wa.gov.au/)
+  - SAT decisions: [sat.justice.wa.gov.au](https://www.sat.justice.wa.gov.au/)
+- **Never cite a code or scheme clause without the edition / version year.** `NCC D2D5` is ambiguous. `NCC 2022 Vol. 1 D2D5` is verifiable. `R-Codes cl. 5.1.3` is ambiguous. `R-Codes Vol. 1 (2024) cl. 5.1.3` is verifiable.
 
 ## Data Provenance
 
-- **State when data was retrieved.** Census data from 2020 is different from 2024 estimates. PLUTO updates quarterly. Say which version you used.
-- **Distinguish between live data and bundled data.** If the skill queried an API, say so. If it used a bundled JSON file, say which file and what it represents.
-- **Flag when data may be stale.** If an EPD is expired, if a zoning map predates a recent rezoning, if demographic data is from a previous census — note it.
+- **State when data was retrieved.** ABS Census data from 2021 is different from 2026 estimates. Landgate cadastral data is updated continuously. SLIP layers have versioning. Say which version / retrieval date you used.
+- **Distinguish between live data and bundled data.** If the skill queried an API or web source, say so. If it used a bundled JSON / markdown file, say which file and what it represents.
+- **Flag when data may be stale.** If a heritage entry pre-dates a recent amendment, if an LPS is undergoing review, if R-Codes Vol. 2 has been updated since the bundled snapshot, if BoM normals are from an earlier reference period — note it.
 
 ## The Standard
 

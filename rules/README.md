@@ -2,15 +2,17 @@
 
 Rules are always-on conventions that shape every skill output. Unlike skills (invoked with a slash command), rules are loaded automatically and apply across all plugins.
 
+**Default jurisdiction: Western Australia.** All rules below are oriented to Australian and WA practice (NCC, R-Codes, LPS / LPP, NATSPEC, Landgate / SLIP, ABS, BoM, Heritage Council of WA, Architects Board of WA).
+
 | Rule | What it governs |
 |------|-----------------|
-| [units-and-measurements](./units-and-measurements.md) | Imperial/metric defaults, area types (GSF/USF/RSF), dimension formatting |
-| [code-citations](./code-citations.md) | Building code references — edition years, section symbols, jurisdiction awareness |
-| [professional-disclaimer](./professional-disclaimer.md) | Disclaimer language, what AI outputs can and cannot claim |
-| [csi-formatting](./csi-formatting.md) | MasterFormat 2018 section numbers, three-part structure, cross-references |
-| [terminology](./terminology.md) | AEC standard terms, abbreviation conventions, material names |
-| [output-formatting](./output-formatting.md) | Tables, headings, source attribution, file naming, list structure |
-| [transparency](./transparency.md) | Show your work — link sources, expose inputs, make outputs verifiable |
+| [units-and-measurements](./units-and-measurements.md) | Metric (SI) defaults, area types (GFA/NLA/NSA/Plot Ratio), dimension formatting (mm / m), AHD levels |
+| [code-citations](./code-citations.md) | NCC, R-Codes, AS/NZS, LPS / LPP, WA legislation — edition years, clause notation, jurisdiction awareness |
+| [professional-disclaimer](./professional-disclaimer.md) | Disclaimer language for AI outputs; Architects Act 2004 (WA) framing; what AI outputs can and cannot claim |
+| [natspec-formatting](./natspec-formatting.md) | NATSPEC worksection numbers, three-part structure, AS/NZS references, cross-references |
+| [terminology](./terminology.md) | Australian AEC terminology, WA planning vocabulary, heritage vocabulary, Australian English spelling |
+| [output-formatting](./output-formatting.md) | Tables, headings, source attribution (ABS / Landgate / BoM / inHerit), file naming, list structure |
+| [transparency](./transparency.md) | Show your work — link to NCC / R-Codes / LPS / SAT sources, expose inputs, make outputs verifiable |
 
 ## How Rules Work
 

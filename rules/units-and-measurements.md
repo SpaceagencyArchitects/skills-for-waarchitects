@@ -4,28 +4,41 @@ These conventions apply to all skill outputs.
 
 ## System
 
-- Default to **US customary (imperial)** units
-- Include metric equivalents in parentheses when the output may be used internationally or when the skill explicitly targets a metric jurisdiction (e.g., Uruguay)
+- Default to **metric (SI)** units — Australian and Western Australian convention
+- Include imperial equivalents in parentheses **only** when the output is explicitly being prepared for a US client or US-specified product
 - Never mix unit systems within a single table, calculation, or paragraph
+- Drawing dimensions in millimetres (mm) without unit suffix is standard Australian practice — match this convention when working in or referencing ArchiCAD/Revit/AutoCAD output
 
 ## Area
 
 - Always specify which area type you are reporting:
-  - **GSF** — Gross Square Feet (measured to exterior wall face)
-  - **USF** — Usable Square Feet (assignable area within tenant boundaries)
-  - **RSF** — Rentable Square Feet (USF + pro-rata share of common areas)
-  - **NSF** — Net Square Feet (functional area inside a room)
-- When converting between types, state the loss factor used (e.g., "15% gross-to-net loss")
-- Abbreviate after first use: "Usable Square Feet (USF)" → then "USF" throughout
+  - **GFA** — Gross Floor Area (measured to the outer face of external walls; per NCC and R-Codes definitions)
+  - **NLA** — Net Lettable Area (commercial leasing — per PCA Method of Measurement)
+  - **NSA** — Net Saleable Area (residential apartments — strata-titled area)
+  - **NFA** — Net Floor Area (functional area inside a room, excluding circulation, walls, services)
+  - **Site Area** — area of the lot per Certificate of Title (Landgate)
+  - **Plot Ratio Area** — area used to calculate plot ratio per the relevant Local Planning Scheme (often excludes lift cores, plant, balconies, etc. — definitions vary by LPS)
+- Plot Ratio is expressed as a decimal (e.g., `R-AC3 = plot ratio 1.5`), not a percentage
+- Site Coverage is expressed as a percentage of site area
+- When converting between area types, state the efficiency factor used (e.g., "82% NLA-to-GFA efficiency")
+- Abbreviate after first use: "Gross Floor Area (GFA)" → then "GFA" throughout
 
 ## Dimensions
 
 - Format: **L × W × H** (length × width × height), separated by ` × ` (space-times-space)
-- Always include units: `12'-0" × 10'-0"` or `3.66 m × 3.05 m`
-- Architectural notation for imperial: feet-inches with dash (`12'-6"`) not decimal feet (`12.5'`)
+- Default unit: millimetres (mm) for building elements, metres (m) for site dimensions and setbacks
+- Examples: `3600 × 2700 × 2400` (mm, no unit suffix in drawing context); `12.5 m × 8.0 m` (site dimensions); `setback 4.5 m`
+- Levels: use AHD (Australian Height Datum) for absolute levels — `RL 12.450 AHD`
+- Areas: square metres (m²) — never `sq m` or `sqm` in formal output
 
 ## Quantities
 
-- Always state the basis: "per floor", "per occupant", "per SF", "per LF"
-- Round to appropriate precision: areas to nearest SF, dimensions to nearest inch, percentages to one decimal
-- Large numbers: use commas (`1,250 SF`) not spaces or periods
+- Always state the basis: "per storey", "per occupant", "per m²", "per dwelling"
+- Round to appropriate precision: areas to nearest m² (or 0.1 m² for small spaces), dimensions to nearest mm, percentages to one decimal
+- Large numbers: use spaces or commas per Australian convention — `1 250 m²` or `1,250 m²` (be consistent within a document); never use full stops as thousand separators
+- Decimal separator: full stop (`12.5 m`), never comma
+
+## Currency
+
+- Default to AUD; format as `$1.2M` for headline figures, `$1,250,000` for precise values, `$/m²` for rates
+- State "ex GST" or "incl. GST" explicitly on every fee or cost figure
