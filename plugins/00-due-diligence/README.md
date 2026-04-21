@@ -1,81 +1,104 @@
 # Due Diligence
 
-A Claude Code plugin for looking up building and property data in New York City. 7 skills that query NYC Open Data (Socrata) across landmarks, DOB permits, violations, ACRIS property records, HPD, and BSA variances. No API key required.
+A Claude Code plugin for property due diligence. One comprehensive WA skill plus legacy NYC skills retained for overseas work.
+
+**Default jurisdiction: Western Australia.**
 
 ## The Problem
 
-Architects and developers routinely need to check 6+ different NYC databases before starting work on a building — DOB for permits and violations, LPC for landmarks, ACRIS for ownership, HPD for residential compliance, BSA for variances. Each has its own portal, its own search interface, and its own data format. A thorough property check takes 30-60 minutes of manual clicking.
+Due diligence on a WA site means checking 8+ different data sources — Landgate for title, inHerit for heritage, the LGA DA register for approval history, SAT for appeals, DWER for contamination, DFES for bushfire, AHIS for Aboriginal heritage, NatureMap for flora/fauna. Each has its own portal, its own search interface, its own interpretation rules. A thorough pre-purchase or pre-design check takes half a day and is easy to do incompletely.
 
 ## The Solution
 
-7 standalone skills that each query a specific data domain, plus an orchestrator that runs all of them and produces a combined report. Every skill resolves addresses via PLUTO (no API key needed) and returns structured markdown.
+**`/wa-property-report`** — one guided workflow that covers every major WA data source, captures findings in a consistent format, applies WA-specific interpretation (what a Memorial means, what an LHS Management Category A implies, what an AHIS Registered Site requires), and produces a single structured report with a risk summary, specialist consultant recommendations, and sources.
+
+The WA due diligence problem is different from the NYC one — most WA data sources don't have clean APIs (Landgate certified searches are paid; LGA DA registers vary; AHIS is legal-advice-dependent). The skill is honest about this: it's a guided workflow + structured output, not a PLUTO-equivalent data lookup.
 
 ```
-Address / BBL / BIN
+Site address + LGA + Lot/DP
        │
-       ├──→ /nyc-landmarks         → LPC check
-       ├──→ /nyc-dob-permits       → permit history
-       ├──→ /nyc-dob-violations    → violations + ECB
-       ├──→ /nyc-acris             → deeds, mortgages
-       ├──→ /nyc-hpd               → residential violations
-       └──→ /nyc-bsa               → variances
+       ├──→ Cadastre & Title (Landgate)
+       │    ├─ free map search
+       │    └─ paid certified CoT
+       ├──→ Heritage (inHerit + LHS)
+       │    ├─ State Register
+       │    ├─ Local Heritage Survey
+       │    └─ Heritage Areas
+       ├──→ DA History (LGA register + SAT)
+       │    ├─ active / recent DAs
+       │    ├─ refusals (why?)
+       │    └─ SAT appeals + precedent
+       └──→ Environmental (8 sub-checks)
+            ├─ Contamination (DWER)
+            ├─ Bushfire (DFES)
+            ├─ Coastal (SPP 2.6 / CHRMAP)
+            ├─ Flood (LGA)
+            ├─ Aboriginal heritage (AHIS)
+            ├─ Flora/fauna/TECs (NatureMap)
+            ├─ Acid sulfate soils (DWER)
+            └─ Services (visible / DBYD)
        │
-       └──→ /nyc-property-report   → combined report (all 6)
-
+       └──→ /wa-property-report
+            · traffic-light risk summary
+            · specialist consultant list
+            · structured markdown report
 ```
-
-## Data Sources
-
-All queries use the NYC Open Data Socrata API. No authentication required.
-
-| Source | Datasets | What it provides |
-|--------|----------|-----------------|
-| PLUTO | `64uk-42ks` | Address resolution, BBL, BIN, building class, zoning, lot data |
-| LPC | `7mgd-s57w` | Landmark status, historic districts |
-| DOB | `ipu4-2q9a`, `ic3t-wcy2`, `rbx6-tga4`, `w9ak-ipjd` | Permits and filings (legacy + DOB NOW) |
-| DOB | `3h2n-5cm9`, `6bgk-3dad`, `sjhj-bc8q` | Violations and ECB penalties |
-| ACRIS | `bnx9-e6tj`, `8h5j-fqxa`, `636b-3b5g`, `7isb-wh4c` | Property transactions (3-table join) |
-| HPD | `wvxf-dwi5`, `csn4-vhvf`, `ygpa-z7cr`, `tesw-yqqr` | Residential violations, complaints, registration |
-| BSA | `yvxd-uipr` | Variances and special permits |
 
 ## Skills
 
-| Skill | Description |
-|-------|-------------|
-| [nyc-landmarks](skills/nyc-landmarks/) | LPC landmark & historic district check |
-| [nyc-dob-permits](skills/nyc-dob-permits/) | DOB permit & filing history across legacy and DOB NOW |
-| [nyc-dob-violations](skills/nyc-dob-violations/) | DOB + ECB violations with open items flagged |
-| [nyc-acris](skills/nyc-acris/) | ACRIS property records — deeds, mortgages, ownership chain |
-| [nyc-hpd](skills/nyc-hpd/) | HPD violations, complaints & building registration (residential) |
-| [nyc-bsa](skills/nyc-bsa/) | BSA variances & special permits |
-| [nyc-property-report](skills/nyc-property-report/) | Combined report — runs all 6 skills, one document |
+| Skill | Jurisdiction | Description |
+|---|---|---|
+| [wa-property-report](skills/wa-property-report/) | WA (default) | Comprehensive due-diligence across cadastre, title, heritage, DA history, SAT, contamination, bushfire, coastal, flood, Aboriginal heritage, flora/fauna, ASS, services |
+| [nyc-landmarks](skills/nyc-landmarks/) | NYC (overseas) | LPC landmark & historic district check |
+| [nyc-dob-permits](skills/nyc-dob-permits/) | NYC | DOB permit & filing history |
+| [nyc-dob-violations](skills/nyc-dob-violations/) | NYC | DOB + ECB violations |
+| [nyc-acris](skills/nyc-acris/) | NYC | ACRIS property transaction records |
+| [nyc-hpd](skills/nyc-hpd/) | NYC | HPD residential violations |
+| [nyc-bsa](skills/nyc-bsa/) | NYC | BSA variances |
+| [nyc-property-report](skills/nyc-property-report/) | NYC | Combined NYC report |
 
-## Agent
+NYC skills retained as a reference / for any overseas project where NYC applies. The WA workflow is the default for local practice.
 
-For full NYC property + zoning analysis (due diligence, zoning envelope, 3D visualization), see the [NYC Zoning Expert](../../agents/nyc-zoning-expert.md) agent — it orchestrates all 7 skills in this plugin plus the zoning analysis skills.
+## Data Sources — WA
+
+| Source | Access | What it provides |
+|---|---|---|
+| [Landgate Map Viewer Plus](https://maps.landgate.wa.gov.au/maps-landgate/registered/) | Free | Lot, DP/SSP/SP, site area, zoning overlay |
+| [WA Online Land Transactions](https://www0.landgate.wa.gov.au/) | Paid (~$29/search) | Certified Certificate of Title + encumbrances + Memorials |
+| [inHerit](https://inherit.dplh.wa.gov.au/) | Free | State Register + Local Heritage Surveys |
+| LGA DA register | Free (varies) | Development application history |
+| [SAT](https://www.sat.justice.wa.gov.au/) | Free | Appeal decisions |
+| [DWER Contaminated Sites Database](https://www.wa.gov.au/service/environment/environment-information-services/contaminated-sites-database) | Free | Contamination classifications |
+| [DFES Bush Fire Prone Areas map](https://www.dfes.wa.gov.au/regulations/planning-and-development/bushfire-prone-areas) | Free | BPA designation |
+| [AHIS](https://www.wa.gov.au/organisation/department-of-planning-lands-and-heritage/aboriginal-heritage-inquiry-system-ahis) | Free | Aboriginal heritage sites |
+| [NatureMap (DBCA)](https://naturemap.dbca.wa.gov.au/) | Free | Flora, fauna, TECs |
 
 ## Install
 
 **Claude Desktop:**
 
 1. Open the **+** menu → **Add marketplace from GitHub**
-2. Enter `AlpacaLabsLLC/skills-for-architects`
+2. Enter `SpaceagencyArchitects/skills-for-architects`
 3. Install the **Due Diligence** plugin
 
 **Claude Code (terminal):**
 
 ```bash
-claude plugin marketplace add AlpacaLabsLLC/skills-for-architects
+claude plugin marketplace add SpaceagencyArchitects/skills-for-architects
 claude plugin install 00-due-diligence@skills-for-architects
 ```
 
 **Manual:**
 
 ```bash
-git clone https://github.com/AlpacaLabsLLC/skills-for-architects.git
-ln -s $(pwd)/skills-for-architects/plugins/00-due-diligence/skills/nyc-landmarks ~/.claude/skills/nyc-landmarks
+git clone https://github.com/SpaceagencyArchitects/skills-for-architects.git
+ln -s $(pwd)/skills-for-architects/plugins/00-due-diligence/skills/wa-property-report ~/.claude/skills/wa-property-report
 ```
+
+## Related
+
+- [`/planning-analysis-wa`](../02-zoning-analysis/skills/planning-analysis-wa/) — planning envelope analysis. Run DD first, then envelope, for a full pre-design workup.
 
 ## License
 
-MIT
+MIT — fork of [AlpacaLabsLLC/skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects), amended for Western Australian practice.

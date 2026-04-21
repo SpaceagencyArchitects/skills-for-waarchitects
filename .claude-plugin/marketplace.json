@@ -12,7 +12,7 @@
     {
       "name": "00-due-diligence",
       "source": "./plugins/00-due-diligence",
-      "description": "NYC property due diligence — landmarks, DOB permits, violations, ACRIS records, HPD, and BSA variances from NYC Open Data."
+      "description": "Property due diligence — Western Australia (Landgate, inHerit, LGA DA registers, SAT, DWER, DFES, AHIS, NatureMap) plus legacy NYC skills for overseas work."
     },
     {
       "name": "01-site-planning",
@@ -22,7 +22,7 @@
     {
       "name": "02-zoning-analysis",
       "source": "./plugins/02-zoning-analysis",
-      "description": "Zoning analysis skills — buildable envelope calculations for New York City and Maldonado, Uruguay."
+      "description": "Planning and zoning envelope analysis — Western Australia (MRS / LPS / R-Codes), New York City (PLUTO), and Maldonado, Uruguay (TONE). Includes interactive 3D envelope viewer."
     },
     {
       "name": "03-programming",

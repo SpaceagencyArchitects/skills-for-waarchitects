@@ -1,108 +1,112 @@
-# Zoning Analysis
+# Zoning & Planning Analysis
 
-A Claude Code plugin for zoning envelope analysis. Give it an address or lot identifier and it calculates the buildable envelope — FAR, height limits, setbacks, yards, permitted uses, parking requirements, and available bonuses — using live PLUTO data and the NYC Zoning Resolution.
+A Claude Code plugin for planning envelope analysis. Give it a site and it calculates the buildable envelope — plot ratio / FAR, height, setbacks, open space, permitted uses, parking, and incentives — using public data sources and the applicable planning instruments.
+
+**Default jurisdiction: Western Australia.** NYC and Uruguay skills are retained as overseas-project references.
 
 ## The Problem
 
-Zoning analysis is one of the most time-consuming and error-prone tasks in early-stage design. The NYC Zoning Resolution alone is thousands of pages, with contextual districts, overlays, special districts, and recent City of Yes reforms that interact in complex ways. Getting it wrong means redesign, delays, or BSA applications.
+Envelope analysis is one of the most time-consuming and error-prone tasks in early-stage design. In WA, the applicable controls are layered — MRS (or regional scheme) → LPS → LPPs → R-Codes → SPPs — and interact in ways that are easy to get wrong. A single missed LPP clause or misread heritage overlay can cost weeks of design time.
 
 ## The Solution
 
-A skill that queries the city's PLUTO dataset for lot-specific data, identifies the applicable zoning district(s), loads the relevant rules, and produces a structured analysis. It handles split zones, contextual suffixes, overlays, and special districts — and always includes caveats about what requires professional verification.
+Per-jurisdiction skills that: identify the applicable layers, load the relevant bundled regulations, apply the rules to the site, and produce a structured markdown report + a JSON envelope block for 3D visualisation.
 
 ```
-                    ┌──────────────────────┐
-                    │  Address, BBL, or BIN│
-                    └──────────┬───────────┘
+                      ┌──────────────────────┐
+                      │  Site address + LGA  │
+                      └──────────┬───────────┘
+                                 │
+          ┌──────────────────────┼──────────────────────┐
+          │                      │                      │
+          ▼                      ▼                      ▼
+  ┌─────────────┐        ┌─────────────┐        ┌─────────────┐
+  │  MRS zone   │        │  LPS zone   │        │  R-Code     │
+  │  (MyPlan)   │        │  (LGA maps) │        │  (LPS map)  │
+  └──────┬──────┘        └──────┬──────┘        └──────┬──────┘
+         │                      │                      │
+         └──────────────────────┼──────────────────────┘
+                                │
+                                ▼
+                ┌──────────────────────────────┐
+                │  Bundled rules               │
+                │  - R-Codes Vol. 1 & 2        │
+                │  - Use classes P/D/A/X       │
+                │  - Bundled LPS file per LGA  │
+                │  - MRS zones reference       │
+                └──────────────┬───────────────┘
                                │
                                ▼
-                    ┌──────────────────────┐
-                    │    PLUTO Query       │
-                    │    (Socrata API)     │
-                    │                      │
-                    │  Lot area, zoning,   │
-                    │  FAR, building class,│
-                    │  overlays, landmarks │
-                    └──────────┬───────────┘
+                ┌──────────────────────────────┐
+                │  Planning analysis report    │
+                │                              │
+                │  • Plot ratio / GFA / yield  │
+                │  • Height + storeys          │
+                │  • Setbacks                  │
+                │  • Open space + deep soil    │
+                │  • Car parking               │
+                │  • Permissibility            │
+                │  • Responsible Authority     │
+                │  • Heritage / BAL / risk     │
+                │  • Scenarios                 │
+                └──────────────┬───────────────┘
                                │
-                    ┌──────────┴───────────┐
-                    │                      │
-                    ▼                      ▼
-          ┌─────────────────┐   ┌─────────────────┐
-          │ Zoning District │   │ Overlays &      │
-          │ Rules           │   │ Special Dists.  │
-          └────────┬────────┘   └────────┬────────┘
-                   │                     │
-                   └──────────┬──────────┘
-                              │
-                              ▼
-                   ┌──────────────────────┐
-                   │   Zoning Analysis    │
-                   │                      │
-                   │ • Floor area (FAR)   │
-                   │ • Height & setback   │
-                   │ • Yards & coverage   │
-                   │ • Permitted uses     │
-                   │ • Parking reqs       │
-                   │ • Bonuses            │
-                   │ • Restrictions       │
-                   │ • Development        │
-                   │   potential          │
-                   └──────────┬───────────┘
-                              │
-                              ▼
-                   ┌──────────────────────┐
-                   │  Markdown Report     │
-                   │  with caveats        │
-                   └──────────┬───────────┘
-                              │
-                              ▼
-                   ┌──────────────────────┐
-                   │  /zoning-envelope    │
-                   │                      │
-                   │  Interactive 3D      │
-                   │  HTML viewer         │
-                   │  (Three.js)          │
-                   └──────────────────────┘
+                               ▼
+                ┌──────────────────────────────┐
+                │  /zoning-envelope            │
+                │                              │
+                │  Interactive 3D HTML viewer  │
+                │  (Three.js, unit-aware)      │
+                └──────────────────────────────┘
 ```
 
 ## Data Sources
 
-| Source | What it provides |
-|--------|-----------------|
-| [NYC PLUTO](https://data.cityofnewyork.us/resource/64uk-42ks.json) (Socrata API) | Lot area, zoning district, FAR, building class, overlays, landmark status |
-| Bundled zoning rules (`zoning-rules/*.md`) | Residential, commercial, manufacturing district rules, contextual districts, special districts, use groups, parking, City of Yes reforms |
+| Jurisdiction | Primary sources |
+|---|---|
+| Western Australia | [Landgate](https://maps.landgate.wa.gov.au/maps-landgate/registered/), [WAPC MyPlan](https://app-ll.planning.wa.gov.au/MyPlan/), LGA IntraMaps viewers, [inHerit](https://inherit.dplh.wa.gov.au/), [DFES BPA map](https://www.dfes.wa.gov.au/), bundled R-Codes + LPS files |
+| New York City | [NYC PLUTO](https://data.cityofnewyork.us/resource/64uk-42ks.json) (Socrata API), bundled NYC Zoning Resolution rules |
+| Uruguay (Maldonado) | Bundled TONE regulation files |
 
 ## Skills
 
-| Skill | Description |
-|-------|-------------|
-| [zoning-analysis-nyc](skills/zoning-analysis-nyc/) | Buildable envelope analysis for NYC lots — FAR, height, setbacks, use groups from PLUTO and the Zoning Resolution |
-| [zoning-analysis-uruguay](skills/zoning-analysis-uruguay/) | Buildable envelope analysis for lots in Maldonado, Uruguay — FOS, FOT, height, setbacks from TONE regulations |
-| [zoning-envelope](skills/zoning-envelope/) | Interactive 3D envelope viewer — generates a self-contained HTML file from any zoning analysis report |
+| Skill | Jurisdiction | Description |
+|---|---|---|
+| [planning-analysis-wa](skills/planning-analysis-wa/) | WA (default) | Envelope analysis for any site in Western Australia — MRS / LPS zone, R-Code, plot ratio, height, setbacks, heritage, BAL. First LGA bundled: City of Fremantle LPS4 |
+| [zoning-analysis-nyc](skills/zoning-analysis-nyc/) | New York City | Buildable envelope from PLUTO — FAR, height, setbacks, use groups |
+| [zoning-analysis-uruguay](skills/zoning-analysis-uruguay/) | Maldonado, UY | Buildable envelope — FOS, FOT, height, setbacks |
+| [zoning-envelope](skills/zoning-envelope/) | Any | Interactive 3D envelope viewer — generates a self-contained HTML file from any zoning / planning analysis report. Supports both metric and imperial units |
+
+## Adding a new LGA (WA)
+
+The WA skill bundles City of Fremantle LPS4 to start. To add a new LGA:
+
+1. Create `skills/planning-analysis-wa/planning-rules/lps-[lga-slug].md`
+2. Follow the structure of `lps-city-of-fremantle-lps4.md` — zones, heritage overlays, LPPs, Responsible Authority notes
+3. Do **not** embed live plot ratio / setback values from memory — the file is a framework; specific values are derived from the gazetted Scheme at analysis time
 
 ## Install
 
 **Claude Desktop:**
 
 1. Open the **+** menu → **Add marketplace from GitHub**
-2. Enter `AlpacaLabsLLC/skills-for-architects`
+2. Enter `SpaceagencyArchitects/skills-for-architects` (your fork)
 3. Install the **Zoning Analysis** plugin
 
 **Claude Code (terminal):**
 
 ```bash
-claude plugin marketplace add AlpacaLabsLLC/skills-for-architects
+claude plugin marketplace add SpaceagencyArchitects/skills-for-architects
 claude plugin install 02-zoning-analysis@skills-for-architects
 ```
 
 **Manual:**
 
 ```bash
-git clone https://github.com/AlpacaLabsLLC/skills-for-architects.git
-ln -s $(pwd)/skills-for-architects/plugins/02-zoning-analysis/skills/zoning-analysis-nyc ~/.claude/skills/zoning-analysis-nyc
+git clone https://github.com/SpaceagencyArchitects/skills-for-architects.git
+ln -s $(pwd)/skills-for-architects/plugins/02-zoning-analysis/skills/planning-analysis-wa ~/.claude/skills/planning-analysis-wa
 ```
 
 ## License
 
-MIT
+MIT — fork of [AlpacaLabsLLC/skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects), amended for Western Australian practice.
