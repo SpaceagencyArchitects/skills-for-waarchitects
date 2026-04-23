@@ -1,9 +1,18 @@
 [
   {
+    "_metadata": {
+      "unit_note": "m² per seat (NLA basis). Converted from US industry benchmarks (original ft²/seat values preserved in comments). Australian practice, measured on NLA per PCA Method of Measurement, commonly sits 10-20% higher per seat than US RSF equivalents due to measurement differences and typical Australian floor-plate geometry.",
+      "area_splits_note": "Zone percentages are jurisdiction-neutral — the same design patterns apply in AU as in US.",
+      "source_benchmarks": "Original US benchmarks derived from JLL, CBRE, Gensler reports (2020-2025). Where AU-specific data available, check Hassell Workplace Futures Survey findings.",
+      "converted": "2026-04-22"
+    }
+  },
+  {
     "id": "dense-open-office",
     "name": "Dense Open Office",
-    "description": "Maximizes seat count in minimal space with open benching and hot desks. Best for high-density tech teams, call centers, or organizations prioritizing collaboration over privacy.",
-    "sf_per_seat": 65,
+    "description": "Maximises seat count in minimal space with open benching and hot desks. Best for high-density tech teams, call centres, or organisations prioritising collaboration over privacy.",
+    "m2_per_seat": 6.0,
+    "original_sf_per_seat": 65,
     "area_splits": {
       "work": 46,
       "meeting": 12,
@@ -13,7 +22,7 @@
     },
     "private_office_pct": 2,
     "desk_type_mix": {
-      "bench-48x24": 80,
+      "bench-1200x600": 80,
       "hot-desking": 20
     },
     "room_ratios": {},
@@ -24,7 +33,8 @@
     "id": "traditional-office",
     "name": "Traditional Office",
     "description": "Balanced mix of open and private workspaces with standard benching and workstations. Suitable for corporate environments with moderate privacy needs.",
-    "sf_per_seat": 150,
+    "m2_per_seat": 14.0,
+    "original_sf_per_seat": 150,
     "area_splits": {
       "work": 35,
       "meeting": 16,
@@ -34,8 +44,8 @@
     },
     "private_office_pct": 20,
     "desk_type_mix": {
-      "bench-60x36": 75,
-      "workstation-6x6": 25
+      "bench-1500x900": 75,
+      "workstation-1800x1800": 25
     },
     "room_ratios": {},
     "source": "seed",
@@ -45,7 +55,8 @@
     "id": "private-office-predominant",
     "name": "Private Office Predominant",
     "description": "Majority private offices with supporting open work areas. Ideal for executives, senior leadership floors, or roles requiring high confidentiality.",
-    "sf_per_seat": 250,
+    "m2_per_seat": 23.0,
+    "original_sf_per_seat": 250,
     "area_splits": {
       "work": 23,
       "meeting": 20,
@@ -55,8 +66,8 @@
     },
     "private_office_pct": 60,
     "desk_type_mix": {
-      "bench-60x36": 75,
-      "workstation-6x6": 25
+      "bench-1500x900": 75,
+      "workstation-1800x1800": 25
     },
     "room_ratios": {},
     "source": "seed",
@@ -64,9 +75,10 @@
   },
   {
     "id": "tech-creative",
-    "name": "Tech/Creative",
+    "name": "Tech / Creative",
     "description": "Flexible, activity-based workspace with adjustable desks and collaborative zones. Designed for product teams, designers, and engineering groups that value agility.",
-    "sf_per_seat": 115,
+    "m2_per_seat": 10.7,
+    "original_sf_per_seat": 115,
     "area_splits": {
       "work": 31,
       "meeting": 22,
@@ -76,8 +88,8 @@
     },
     "private_office_pct": 5,
     "desk_type_mix": {
-      "bench-60x36-adj": 53,
-      "bench-48x24": 32,
+      "bench-1500x900-adj": 53,
+      "bench-1200x600": 32,
       "hot-desking": 15
     },
     "room_ratios": {},
@@ -88,7 +100,8 @@
     "id": "professional-services",
     "name": "Professional Services",
     "description": "Structured layout balancing client-facing meeting spaces with individual focus areas. Suited for consulting, accounting, and advisory firms.",
-    "sf_per_seat": 220,
+    "m2_per_seat": 20.4,
+    "original_sf_per_seat": 220,
     "area_splits": {
       "work": 33,
       "meeting": 18,
@@ -98,8 +111,8 @@
     },
     "private_office_pct": 30,
     "desk_type_mix": {
-      "bench-60x36": 57,
-      "workstation-6x6": 43
+      "bench-1500x900": 57,
+      "workstation-1800x1800": 43
     },
     "room_ratios": {},
     "source": "seed",
@@ -108,8 +121,9 @@
   {
     "id": "legal-services",
     "name": "Legal Services",
-    "description": "Heavy private office allocation with generous support and meeting areas. Tailored for law firms, judiciary offices, and compliance-heavy organizations.",
-    "sf_per_seat": 300,
+    "description": "Heavy private office allocation with generous support and meeting areas. Tailored for law firms, judiciary offices, and compliance-heavy organisations.",
+    "m2_per_seat": 28.0,
+    "original_sf_per_seat": 300,
     "area_splits": {
       "work": 36,
       "meeting": 20,
@@ -119,8 +133,8 @@
     },
     "private_office_pct": 50,
     "desk_type_mix": {
-      "bench-60x36": 50,
-      "workstation-6x6": 50
+      "bench-1500x900": 50,
+      "workstation-1800x1800": 50
     },
     "room_ratios": {},
     "source": "seed",
@@ -130,7 +144,8 @@
     "id": "co-working",
     "name": "Co-Working",
     "description": "Maximum shared amenities with flexible hot-desking and minimal assigned seats. Perfect for co-working operators, incubators, and shared workspace providers.",
-    "sf_per_seat": 75,
+    "m2_per_seat": 7.0,
+    "original_sf_per_seat": 75,
     "area_splits": {
       "work": 13,
       "meeting": 22,
@@ -141,8 +156,8 @@
     "private_office_pct": 0,
     "desk_type_mix": {
       "hot-desking": 67,
-      "bench-48x24": 22,
-      "bench-60x36": 11
+      "bench-1200x600": 22,
+      "bench-1500x900": 11
     },
     "room_ratios": {},
     "source": "seed",
@@ -151,8 +166,9 @@
   {
     "id": "modular",
     "name": "Modular",
-    "description": "Built around prefabricated and modular room systems — phone booths, meeting pods, focus pods, and demountable offices. High meeting allocation supports a plug-and-play room inventory. Suited for organizations that want flexibility to reconfigure without construction.",
-    "sf_per_seat": 180,
+    "description": "Built around prefabricated and modular room systems — phone booths, meeting pods, focus pods, and demountable offices. High meeting allocation supports a plug-and-play room inventory. Suited for organisations that want flexibility to reconfigure without construction.",
+    "m2_per_seat": 16.7,
+    "original_sf_per_seat": 180,
     "area_splits": {
       "work": 18,
       "meeting": 25,
@@ -162,8 +178,8 @@
     },
     "private_office_pct": 15,
     "desk_type_mix": {
-      "bench-60x36-adj": 47,
-      "workstation-6x6": 53
+      "bench-1500x900-adj": 47,
+      "workstation-1800x1800": 53
     },
     "room_ratios": {},
     "source": "seed",
@@ -172,8 +188,9 @@
   {
     "id": "creative-agency-hybrid",
     "name": "Creative Agency (Hybrid)",
-    "description": "Studio culture with heavy collaboration, pin-up/crit spaces, and hybrid attendance. Low work allocation offset by high meeting (enclosed crit rooms, client presentation) and generous common space. No private offices. Designed for agencies, design studios, and creative teams where peak occupancy is 40-60% of headcount.",
-    "sf_per_seat": 233,
+    "description": "Studio culture with heavy collaboration, pin-up / crit spaces, and hybrid attendance. Low work allocation offset by high meeting (enclosed crit rooms, client presentation) and generous common space. No private offices. Designed for agencies, design studios, and creative teams where peak occupancy is 40-60% of headcount.",
+    "m2_per_seat": 21.6,
+    "original_sf_per_seat": 233,
     "area_splits": {
       "work": 26,
       "meeting": 24,
@@ -183,8 +200,8 @@
     },
     "private_office_pct": 0,
     "desk_type_mix": {
-      "bench-60x36-adj": 70,
-      "bench-48x24": 30
+      "bench-1500x900-adj": 70,
+      "bench-1200x600": 30
     },
     "room_ratios": {},
     "source": "program",
@@ -192,9 +209,10 @@
   },
   {
     "id": "legal-modern-lean",
-    "name": "Legal (Modern/Lean)",
-    "description": "Density-optimized law firm with minimal private offices (10%), lean support staffing, and digital-first workflows. Maximizes attorney headcount by pushing work zone high and keeping common/BOH tight. 5-day in-office, no desk sharing. Suited for litigation boutiques, legal tech, and modern mid-size firms.",
-    "sf_per_seat": 164,
+    "name": "Legal (Modern / Lean)",
+    "description": "Density-optimised law firm with minimal private offices (10%), lean support staffing, and digital-first workflows. Maximises lawyer headcount by pushing work zone high and keeping common / BOH tight. 5-day in-office, no desk sharing. Suited for litigation boutiques, legal tech, and modern mid-size firms.",
+    "m2_per_seat": 15.2,
+    "original_sf_per_seat": 164,
     "area_splits": {
       "work": 41,
       "meeting": 17,
@@ -204,9 +222,9 @@
     },
     "private_office_pct": 10,
     "desk_type_mix": {
-      "bench-60x36": 82,
+      "bench-1500x900": 82,
       "private-office": 9,
-      "bench-48x24": 9
+      "bench-1200x600": 9
     },
     "room_ratios": {},
     "source": "program",

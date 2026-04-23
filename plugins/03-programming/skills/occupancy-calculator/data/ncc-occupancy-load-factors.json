@@ -1,0 +1,175 @@
+{
+  "_metadata": {
+    "source": "NCC 2022 Vol. 1 Schedule 7 D3D15 — to be populated from the gazetted text",
+    "source_url": "https://ncc.abcb.gov.au/",
+    "wa_variations_reference": "NCC 2022 Vol. 1 Appendix WA",
+    "unit": "m²_per_person",
+    "area_type": "floor_area_ncc_d3d15",
+    "area_type_note": "NCC D3D15 uses 'floor area' measured to the inside face of external walls — distinct from GFA (LPS) and NLA (PCA Method of Measurement).",
+    "TODO": "This file is a structured stub. The load factors below must be verified against the gazetted NCC 2022 Vol. 1 Schedule 7 D3D15 before being relied on for any calculation. Do not guess or estimate. If a load factor is needed that is not yet populated, the skill should prompt the user to look it up and supply the value, then apply it.",
+    "status": "stub — populate before use",
+    "last_updated": "2026-04-22"
+  },
+  "factors": [
+    {
+      "id": "class-5-office-general",
+      "ncc_class": "Class 5",
+      "use": "Office — general work areas",
+      "load_factor_m2_per_person": 10,
+      "status": "verified",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["office", "workplace", "open-plan office", "cellular office"],
+      "notes": "The NCC figure for Class 5 office general floor areas. Always check Appendix WA for any WA variation before final use. Actual density may be lower in practice (hybrid working)."
+    },
+    {
+      "id": "class-6-shop-retail-floor",
+      "ncc_class": "Class 6",
+      "use": "Shop — retail sales floor (general)",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["shop", "retail", "showroom"],
+      "notes": "TODO: verify current NCC figure. Indicative 3 m²/person for general retail; density varies by retail type."
+    },
+    {
+      "id": "class-6-cafe-restaurant-dining",
+      "ncc_class": "Class 6",
+      "use": "Café / restaurant — dining area",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["cafe", "restaurant", "dining", "eatery"],
+      "notes": "TODO: verify NCC figure for dining. Indicative 1 m²/person — very dense. Kitchen is separate — see kitchen entry."
+    },
+    {
+      "id": "class-6-bar-standing",
+      "ncc_class": "Class 6",
+      "use": "Bar / licensed premises — standing area",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["bar", "tavern", "pub", "licensed premises"],
+      "notes": "TODO: verify NCC figure. Standing areas at licensed premises are typically the densest use in the code."
+    },
+    {
+      "id": "kitchen-commercial",
+      "ncc_class": "Class 6",
+      "use": "Kitchen — commercial (back of house)",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["kitchen", "commercial kitchen", "back of house"],
+      "notes": "TODO: verify. Indicative 20 m²/person — kitchen staff only, not dining occupants."
+    },
+    {
+      "id": "class-7a-car-park",
+      "ncc_class": "Class 7a",
+      "use": "Car park",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["car park", "parking", "garage"],
+      "notes": "TODO: verify. Typically 30 m²/person or more — very low density by occupancy."
+    },
+    {
+      "id": "class-7b-storage-warehouse",
+      "ncc_class": "Class 7b",
+      "use": "Storage / warehouse / wholesale",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["storage", "warehouse", "wholesale"],
+      "notes": "TODO: verify. Typically low density (50 m²/person or higher)."
+    },
+    {
+      "id": "class-8-factory-workshop",
+      "ncc_class": "Class 8",
+      "use": "Factory / workshop / laboratory",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["factory", "workshop", "laboratory", "studio", "industrial"],
+      "notes": "TODO: verify. Density varies widely by activity — light assembly vs heavy industry."
+    },
+    {
+      "id": "class-9a-hospital-ward",
+      "ncc_class": "Class 9a",
+      "use": "Hospital / health care — ward area",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["hospital", "ward", "health care", "medical"],
+      "notes": "TODO: verify. Multiple sub-uses within Class 9a — ward, treatment, day procedure — each with different factors."
+    },
+    {
+      "id": "class-9b-assembly-concentrated",
+      "ncc_class": "Class 9b",
+      "use": "Assembly — concentrated (seated, auditoria, theatres)",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["assembly", "auditorium", "theatre", "cinema", "church", "concentrated assembly"],
+      "notes": "TODO: verify. For fixed seating, count the actual seats (NCC D3D15 direction). Without fixed seats, use the NCC factor."
+    },
+    {
+      "id": "class-9b-assembly-unconcentrated",
+      "ncc_class": "Class 9b",
+      "use": "Assembly — unconcentrated (tables, classrooms, function rooms)",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["unconcentrated assembly", "function room", "classroom", "dining with tables"],
+      "notes": "TODO: verify. Typically less dense than concentrated assembly but denser than office."
+    },
+    {
+      "id": "class-9b-sports-venue",
+      "ncc_class": "Class 9b",
+      "use": "Sports venue — spectator area",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["stadium", "sports venue", "grandstand"],
+      "notes": "TODO: verify. For fixed seating, count actual seats. Standing areas separate."
+    },
+    {
+      "id": "class-9b-school-classroom",
+      "ncc_class": "Class 9b",
+      "use": "School / education — classroom",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["classroom", "school", "education", "lecture theatre"],
+      "notes": "TODO: verify. Primary, secondary, tertiary all have distinct NCC treatment."
+    },
+    {
+      "id": "class-9c-residential-care",
+      "ncc_class": "Class 9c",
+      "use": "Residential care — resident accommodation",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["aged care", "residential care", "disability accommodation"],
+      "notes": "TODO: verify. Occupant load usually calculated by bed count."
+    },
+    {
+      "id": "class-3-residential-other",
+      "ncc_class": "Class 3",
+      "use": "Residential (non-dwelling) — hostel, boarding, dormitory",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["hostel", "backpackers", "boarding house", "dormitory"],
+      "notes": "TODO: verify. Occupant load usually based on bed count rather than m² factor."
+    },
+    {
+      "id": "class-2-apartment-sole-occupancy",
+      "ncc_class": "Class 2",
+      "use": "Apartment — sole-occupancy unit",
+      "load_factor_m2_per_person": null,
+      "status": "TODO",
+      "source": "NCC 2022 Vol. 1 Schedule 7 D3D15",
+      "aliases": ["apartment", "unit", "sole occupancy", "SOU"],
+      "notes": "TODO: verify. Class 2 SOUs are typically assessed by bedroom count rather than m² factor."
+    }
+  ]
+}

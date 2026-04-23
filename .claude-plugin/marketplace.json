@@ -17,7 +17,7 @@
     {
       "name": "01-site-planning",
       "source": "./plugins/01-site-planning",
-      "description": "Site planning skills — environmental analysis, mobility, demographics, and history."
+      "description": "Site planning skills for Western Australia — climate (BoM), bushfire (DFES), mobility (Transperth), demographics (ABS), heritage and neighbourhood character. Falls back to international sources for overseas projects."
     },
     {
       "name": "02-zoning-analysis",
@@ -27,17 +27,17 @@
     {
       "name": "03-programming",
       "source": "./plugins/03-programming",
-      "description": "Architectural programming skills — occupancy load calculations (IBC) and workplace space programming."
+      "description": "Architectural programming skills — occupancy load calculations (NCC 2022 Part D3 for WA, IBC fallback for international) and workplace space programming in metric / NLA."
     },
     {
       "name": "04-specifications",
       "source": "./plugins/04-specifications",
-      "description": "Construction specification skills — CSI MasterFormat spec writing."
+      "description": "Outline specification writer — NATSPEC for Australian / WA practice (NATSPEC Building and NATSPEC Domestic) with AS / AS-NZS standards and NCC 2022 references; CSI MasterFormat fallback for overseas projects."
     },
     {
       "name": "05-sustainability",
       "source": "./plugins/05-sustainability",
-      "description": "Sustainability skills — EPD parsing, research, comparison, and CSI specification with GWP thresholds."
+      "description": "Sustainability skills — EPD parsing, research, comparison and NATSPEC specification with GWP thresholds. Aligned to Green Star Buildings Responsible Products and NABERS Embodied Emissions for AU / WA, with LEED v4.1 MRc2 fallback for international."
     },
     {
       "name": "06-materials-research",

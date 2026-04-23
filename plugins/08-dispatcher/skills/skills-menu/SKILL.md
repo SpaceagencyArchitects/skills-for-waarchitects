@@ -8,7 +8,7 @@ user-invocable: true
 
 # /skills — What's Available
 
-You display the full menu of available skills and agents, organized by what the user needs to accomplish. This is a read-only help command.
+You display the full menu of available skills and agents, organised by what the user needs to accomplish. This is a read-only help command.
 
 ## On Start
 
@@ -17,72 +17,76 @@ Print the following menu. Do not read any files — the menu is static.
 ## Output
 
 ```
-# Architecture Studio
+# Architect Skills — spaceagency architects (WA)
 
-**36 skills, 7 agents** (includes master-schedule) — type /studio [your task] to get routed, or call any skill directly.
+**40 skills, 8 agents** — type /studio [your task] to get routed, or call any skill directly.
+Default jurisdiction: Western Australia. NYC and Uruguay routes retained for international work.
 
 ## Agents — describe your task, they figure out the rest
 
 | Agent | What it does |
-|-------|-------------|
-| Site Planner | Full site brief — climate, transit, demographics, neighborhood context |
-| NYC Zoning Expert | NYC property + zoning — due diligence, FAR, buildable envelope, 3D viewer |
-| Workplace Strategist | Space programs — headcount to occupancy compliance to room schedules |
+|---|---|
+| Site Planner | Full site brief — climate (BoM), transit (Transperth), demographics (ABS), history |
+| WA Planning Expert | WA DD + planning envelope — title, heritage, R-Codes / LPS, 3D viewer |
+| NYC Zoning Expert | Legacy — NYC property + zoning, FAR, buildable envelope, 3D viewer |
+| Workplace Strategist | Space programs — headcount to occupancy (NCC) to room schedules |
 | Product & Materials Researcher | Find products from a brief, extract specs from URLs/PDFs, find alternatives |
 | FF&E Designer | Build schedules from messy inputs, compose room packages, QA, export |
-| Sustainability Specialist | EPD research, GWP comparison, LEED eligibility, spec thresholds |
-| Brand Manager | Presentations, color palettes, visual consistency, deliverable QA |
+| Sustainability Specialist | EPD research, GWP comparison, Green Star / NABERS / NCC Section J |
+| Brand Manager | Presentations, colour palettes, visual consistency, deliverable QA |
 
 ## Skills — call directly for a specific task
 
 ### Site & Due Diligence
-/environmental-analysis [address] — climate, flood, seismic, soil
-/mobility-analysis [address] — transit, walk score, bike, pedestrian
-/demographics-analysis [address] — population, income, housing, employment
-/history [address] — neighborhood context, landmarks, commercial activity
-/nyc-landmarks [address] — LPC landmark and historic district check
-/nyc-dob-permits [address] — DOB permit and filing history
-/nyc-dob-violations [address] — DOB and ECB violations
-/nyc-acris [address] — property transaction records
-/nyc-hpd [address] — HPD violations and complaints (residential)
-/nyc-bsa [address] — BSA variances and special permits
-/nyc-property-report [address] — combined NYC report (all 6 above)
+/environmental-analysis [address] — climate (BoM), bushfire (DFES), coastal, seismic, soil, ASS
+/mobility-analysis [address] — Transperth, roads, cycling network, Walk Score, airport
+/demographics-analysis [address] — ABS Census, REIWA, employment, age, housing
+/history [address] — Traditional Owners, heritage, architectural character, planned devt.
+/wa-property-report [address] — WA DD: Landgate, inHerit, LGA DA, SAT, DWER, DFES, AHIS
+/nyc-landmarks [address] — legacy NYC LPC landmark check
+/nyc-dob-permits [address] — legacy NYC DOB permit history
+/nyc-dob-violations [address] — legacy NYC DOB/ECB violations
+/nyc-acris [address] — legacy NYC property transactions
+/nyc-hpd [address] — legacy NYC HPD violations
+/nyc-bsa [address] — legacy NYC BSA variances
+/nyc-property-report [address] — legacy combined NYC report
 
-### Zoning
-/zoning-analysis-nyc [address] — NYC buildable envelope from PLUTO
+### Zoning & Planning
+/planning-analysis-wa [address] — WA planning envelope: MRS / LPS / R-Codes / height / setbacks
+/zoning-analysis-nyc [address] — legacy NYC buildable envelope from PLUTO
 /zoning-analysis-uruguay — Maldonado, Uruguay lot analysis
-/zoning-envelope — interactive 3D zoning envelope viewer
+/zoning-envelope [report] — interactive 3D envelope viewer (metric or imperial)
 
 ### Programming
-/occupancy-calculator — IBC occupancy loads, egress, plumbing
+/occupancy-calculator — occupancy loads, egress, plumbing (NCC migration pending)
 /workplace-programmer — space programs from headcount and work style
 
 ### Specifications
-/spec-writer — CSI outline specs from a materials list
+/spec-writer — outline specs (NATSPEC migration pending)
 
 ### Sustainability
-/epd-research [material] — search for EPDs by material or category
+/epd-research [material] — search EC3 / UL / Environdec for EPDs
 /epd-parser [file] — extract data from an EPD PDF
 /epd-compare — side-by-side environmental impact comparison
-/epd-to-spec — CSI specs with EPD requirements and GWP thresholds
+/epd-to-spec — specs with EPD requirements and GWP thresholds
 
 ### Product & Materials Research
 /product-research — find products from a design brief
 /product-spec-bulk-fetch — extract specs from product URLs
-/product-spec-pdf-parser — extract specs from PDF catalogs
-/product-data-cleanup — normalize a messy FF&E schedule
-/product-enrich — auto-tag products with categories, colors, materials
+/product-spec-pdf-parser — extract specs from PDF catalogues
+/product-data-cleanup — normalise a messy FF&E schedule
+/product-enrich — auto-tag products with categories, colours, materials
 /product-match — find similar products
 /product-pair — suggest complementary products
 /product-image-processor — download, resize, remove backgrounds
-/product-data-import — import raw product data into the master schedule
+/product-data-import — import raw product data into master schedule
 /master-schedule — connect a product library sheet to the project
 /csv-to-sif — convert CSV to dealer format
 /sif-to-csv — convert dealer format to CSV
 
 ### Presentations
 /slide-deck-generator [topic] — HTML slide deck with editorial layout
-/color-palette-generator — color palettes from descriptions or images
+/color-palette-generator — colour palettes from descriptions or images
 /resize-images — batch-resize photos for web, social, slides, and print
 ```
 

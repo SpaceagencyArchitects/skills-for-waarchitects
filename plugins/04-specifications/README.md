@@ -1,23 +1,26 @@
 # Specifications
 
-A Claude Code plugin for construction documentation. Generate CSI MasterFormat outline specifications from a materials list — organized by division with three-part sections, performance criteria, and standards references.
+A Claude Code plugin for construction documentation. Generates **NATSPEC** outline specifications from a materials list — organised by worksection with three-part structure, AS / AS-NZS standards, and NCC 2022 references.
+
+**Default jurisdiction: Western Australia.** Uses **NATSPEC Building** (commercial) or **NATSPEC Domestic** (residential) by default. Falls back to CSI MasterFormat 2020 for overseas / US-client projects.
 
 ## The Problem
 
-Specification writing is tedious and repetitive — mapping materials to CSI divisions, writing three-part specs with the right language, referencing standards. Architects spend hours producing outline specs that follow the same structural patterns every time.
+Specification writing is tedious and repetitive — mapping materials to NATSPEC worksections, writing three-part specs with the right language, referencing the correct AS / AS-NZS standards and NCC clauses. Architects in WA spend hours producing outline specs that follow the same structural patterns every time, and getting the references wrong (wrong AS edition, wrong NCC clause, wrong BAL approach) can cost real money downstream.
 
 ## The Solution
 
-A skill that knows CSI MasterFormat 2020 and produces properly formatted outline specs. Give it a materials list — pasted, from a file, or described verbally — and it maps each material to the correct division, writes three-part sections (General, Products, Execution), and flags items that need professional review.
+A skill that knows NATSPEC worksection conventions and produces properly formatted outline specs for WA practice. Give it a materials list — pasted, from a file, or described verbally — and it maps each material to the correct worksection, writes three-part worksections (**1 General / 2 Products / 3 Execution**), cites the right AS / AS-NZS standards and NCC 2022 clauses, and flags items that need professional review.
 
 ```
 ┌──────────────────────────────────┐
 │         DESIGNER INPUT           │
 │                                  │
-│  Materials list                  │
+│  Materials list:                 │
 │  "porcelain tile,                │
-│   steel studs,                   │
-│   gypsum board..."               │
+│   plasterboard linings,          │
+│   Colorbond roofing,             │
+│   aluminium windows..."          │
 └─────────────┬────────────────────┘
               │
               ▼
@@ -25,21 +28,26 @@ A skill that knows CSI MasterFormat 2020 and produces properly formatted outline
    │   Spec Writer     │
    │                   │
    │  Materials →      │
-   │  CSI divisions →  │
+   │  NATSPEC          │
+   │  worksections →   │
    │  3-part specs     │
    │                   │
-   │  Divisions:       │
-   │  03-26            │
-   │  (Concrete →      │
-   │   Electrical)     │
+   │  Worksections:    │
+   │  0111–2711        │
+   │  (01 General →    │
+   │   27 Comms)       │
    │                   │
-   │  Part 1: General  │
-   │  Part 2: Products │
-   │  Part 3: Execution│
+   │  1 General        │
+   │  2 Products       │
+   │  3 Execution      │
+   │                   │
+   │  AS / AS-NZS      │
+   │  NCC 2022         │
    │                   │
    │  [REVIEW REQUIRED]│
    │  flags on generic │
-   │  or safety specs  │
+   │  or life-safety   │
+   │  worksections     │
    └─────────┬─────────┘
              │
              ▼
@@ -54,41 +62,54 @@ A skill that knows CSI MasterFormat 2020 and produces properly formatted outline
 
 | Step | What happens |
 |------|-------------|
-| **Parse** | Reads materials list (pasted, file, or verbal) and classifies into CSI divisions |
-| **Generate** | Writes 3-part outline specs — General, Products, Execution — with standards references |
-| **Annotate** | Adds `[REVIEW REQUIRED]` flags on generic specs, life-safety sections, assumed criteria |
-| **Export** | Saves markdown file |
+| **Parse** | Reads materials list (pasted, file, or verbal) and classifies into NATSPEC worksections |
+| **Generate** | Writes 3-part outline worksections — 1 General / 2 Products / 3 Execution — with AS / AS-NZS and NCC 2022 references |
+| **Annotate** | Adds `[REVIEW REQUIRED]` flags on generic worksections, life-safety sections, assumed criteria |
+| **Export** | Saves markdown file with professional disclaimer |
 
-Covers 11 CSI MasterFormat 2020 divisions (03 Concrete through 26 Electrical). Uses proper spec language — "shall", "provide", "verify", imperative mood, no contractions.
+Covers the full NATSPEC Building worksection range (01xx General through 27xx Communications services), with NATSPEC Domestic prefixes for residential work. Uses proper spec language — "shall", "provide", "comply with", "to", imperative mood, Australian English throughout.
 
 ## Skills
 
 | Skill | Description |
 |-------|-------------|
-| [spec-writer](skills/spec-writer/) | CSI outline specification writer — maps materials to MasterFormat 2020 divisions with three-part specs |
+| [spec-writer](skills/spec-writer/) | NATSPEC outline specification writer — maps materials to NATSPEC worksections with three-part structure and AS / AS-NZS / NCC 2022 references |
+
+## Australian context
+
+Things the plugin handles for WA practice:
+
+- **NATSPEC worksection numbering** — 4-digit codes (e.g. `0411 Brick and block construction`) with space separator, per `rules/natspec-formatting.md`
+- **Domestic vs Building** — `D`-prefixed worksections for Class 1 / single dwelling work
+- **AS / AS-NZS with year** — e.g. "to AS 3600–2018, *Concrete structures*"
+- **NCC 2022 citations** — Parts / Clauses / Specs where the AS reference is code-driven
+- **BAL ratings** — AS 3959 references for Bushfire Prone Areas
+- **WA-available manufacturers** — Colorbond, Austral Bricks, CSR Gyprock, Laminex, Dulux etc. named where appropriate
+- **Metric throughout** — mm, m, m², kg, kPa, °C
+- **Australian English** — colour, centre, organise, aluminium, storey
 
 ## Install
 
 **Claude Desktop:**
 
 1. Open the **+** menu → **Add marketplace from GitHub**
-2. Enter `AlpacaLabsLLC/skills-for-architects`
+2. Enter `SpaceagencyArchitects/skills-for-architects`
 3. Install the **Specifications** plugin
 
 **Claude Code (terminal):**
 
 ```bash
-claude plugin marketplace add AlpacaLabsLLC/skills-for-architects
+claude plugin marketplace add SpaceagencyArchitects/skills-for-architects
 claude plugin install 04-specifications@skills-for-architects
 ```
 
 **Manual:**
 
 ```bash
-git clone https://github.com/AlpacaLabsLLC/skills-for-architects.git
+git clone https://github.com/SpaceagencyArchitects/skills-for-architects.git
 ln -s $(pwd)/skills-for-architects/plugins/04-specifications/skills/spec-writer ~/.claude/skills/spec-writer
 ```
 
 ## License
 
-MIT
+MIT — fork of [AlpacaLabsLLC/skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects), rewritten for NATSPEC / WA practice.

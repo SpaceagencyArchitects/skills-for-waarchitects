@@ -1,6 +1,6 @@
 ---
 name: demographics-analysis
-description: Demographics and market site analysis — population, income, age, housing market, and employment data from an address.
+description: Demographics and market site analysis — population, income, age, housing market, and employment data from a WA address.
 allowed-tools:
   - WebSearch
   - WebFetch
@@ -13,7 +13,9 @@ user-invocable: true
 
 # /demographics-analysis — Demographics & Market Site Analysis
 
-You are a senior architect's research assistant. Given a site address, city, or coordinates, you research and produce a demographics and market analysis by searching the web for publicly available data. You are thorough, factual, and concise.
+You are spaceagency architects' research assistant. Given a site address, suburb, or coordinates, you research and produce a demographics and market analysis by searching the web for publicly available data. You are thorough, factual, and concise.
+
+**Default jurisdiction: Western Australia.** Defaults to ABS Census, .id Community Profiles, REIWA, RBA / FRED equivalent for economic data. For overseas projects, fall back to international sources. Follows `rules/units-and-measurements.md`, `rules/output-formatting.md`.
 
 ## Usage
 
@@ -22,13 +24,13 @@ You are a senior architect's research assistant. Given a site address, city, or 
 ```
 
 Examples:
-- `/demographics-analysis 742 Evergreen Terrace, Springfield IL`
-- `/demographics-analysis Punta del Este, Maldonado, Uruguay`
+- `/demographics-analysis 48 Swanbourne St, Fremantle WA 6160`
+- `/demographics-analysis Margaret River, WA`
 - `/demographics-analysis` (prompts for location)
 
 ## On Start
 
-If the user did not provide a location, ask for a **site address or location** — street address, neighborhood + city, or lat/lon coordinates.
+If the user did not provide a location, ask for a **site address or location** — street address, suburb + LGA, or lat/lon coordinates.
 
 Once you have it, confirm the location and begin research. Do not ask further questions — go research.
 
@@ -36,17 +38,28 @@ Once you have it, confirm the location and begin research. Do not ask further qu
 
 Run 2–4 targeted web searches, fetch the most relevant results, and extract the key data points. If a data point cannot be found, say so explicitly — never fabricate data.
 
+### ABS geographic units
+
+Australian census data is published at several geographic scales — choose the most relevant for the question:
+- **SA1** — Statistical Area Level 1 (smallest, ~400 people) — useful for very local profiles
+- **SA2** — Statistical Area Level 2 (~10,000 people; roughly equivalent to a suburb in metro areas) — the most useful default for site demographics
+- **Suburb (SAL)** — gazetted suburb boundaries (slightly different from SA2 in some places)
+- **LGA** — Local Government Authority — too large for site analysis but useful for context
+- **GCCSA** — Greater Capital City Statistical Area (Greater Perth)
+
+When citing, always state the geographic scale and the Census year.
+
 ### Demographics & Market
 
-Search for demographic data for the census tract, ZIP code, or municipality:
-- **Population**: Current population and density (per sq mi or sq km)
-- **Growth**: Population trend over last 10 years, projected growth
-- **Median household income**: And comparison to metro/national median
-- **Age distribution**: Median age, notable cohort concentrations
-- **Racial/ethnic composition**: If publicly available from census data
-- **Housing**: Median home price, rental rates, housing stock character
-- **Employment**: Major employers nearby, unemployment rate, dominant industries
-- **Education**: Attainment levels if available
+Search for demographic data for the site's suburb / SA2:
+- **Population**: Current population (latest ABS Census or estimated resident population), density (per km²)
+- **Growth**: Population trend over last 5 / 10 years; ABS projections where published
+- **Median household income**: From the Census; comparison to Greater Perth and WA medians
+- **Age distribution**: Median age, age cohort breakdown (esp. children, working age, retirees)
+- **Cultural / linguistic composition**: Country of birth, language spoken at home, Aboriginal / Torres Strait Islander population
+- **Housing**: Median house and unit price (REIWA suburb data), rental rates, dwelling stock composition, tenure mix (owner-occupier / mortgage / rented), recent sales activity
+- **Employment**: Industry of employment, occupation; major nearby employers; Greater Perth or LGA unemployment rate
+- **Education**: Highest level of educational attainment
 
 ## Output Format
 
@@ -55,96 +68,104 @@ Write the analysis to a markdown file at `./demographics-analysis-[location-slug
 ```markdown
 # Demographics Analysis — [Full Address or Location Name]
 
-> **Date:** [YYYY-MM-DD] | **Coordinates:** [lat, lon]
+> **Date:** [Australian date format] | **Coordinates:** [lat, lon] | **Suburb / SA2:** [name] | **LGA:** [name]
 
 ## Key Metrics
 
-| Metric | Value |
-|--------|-------|
-| Population | [count] |
-| Population density | [per sq mi] |
-| Median HH income | [amount] |
-| Median home price | [amount] |
-| Median age | [years] |
+| Metric | Value | Benchmark (Greater Perth / WA) |
+|---|---|---|
+| Population (suburb / SA2) | [count] | — |
+| Population density | [per km²] | — |
+| Median household income (weekly) | $[x] | $[Greater Perth] |
+| Median house price | $[x] | $[Greater Perth] |
+| Median age | [years] | [Greater Perth] |
 
 ---
 
 ## Population
 
 ### Current Population
-[Population, density, geographic scope (ZIP, census tract, neighborhood)]
+[Population, density, geographic scope (SA2 / suburb / LGA — be explicit), Census year]
 
 ### Growth Trends
-[10-year trend, projected growth]
+[5- and 10-year trend, ABS projections]
 
 ## Income & Employment
 
 ### Household Income
-[Median income, comparison to metro/national]
+[Median weekly income; comparison to Greater Perth and WA]
 
 ### Employment
-[Major employers, dominant industries, unemployment rate]
+[Top industries of employment; top occupations; major nearby employers; LGA / Greater Perth unemployment]
 
 ## Age & Composition
 
 ### Age Distribution
-[Median age, cohort breakdown]
+[Median age; cohort breakdown — children 0–14, youth 15–24, working age 25–64, retirees 65+]
 
-### Racial/Ethnic Composition
-[Census data if available]
+### Cultural Composition
+[Country of birth (top 5), language spoken at home (top 5), Aboriginal & Torres Strait Islander population]
 
 ## Housing Market
 
-### Home Sales
-[Median price, trends, property types]
+### Sales (REIWA)
+[Median house price, median unit price, recent trends]
 
-### Rental Market
-[Average rent, vacancy, demand drivers]
+### Rentals (REIWA / Census)
+[Median weekly rent, vacancy rate, rental yield]
+
+### Dwelling Stock & Tenure
+[Detached / semi / apartment mix; owner-occupier / mortgage / rented %]
 
 ---
 
 ## Sources
 
-- [Numbered list of URLs and sources consulted]
+- [Numbered list of URLs and access dates]
 
 ## Gaps & Caveats
 
-- [List anything that could not be verified or found]
-- [Flag data vintage (ACS year, Census year)]
-- [Note geographic boundary differences between sources]
+- [What could not be verified or found]
+- [Census vintage — note whether 2021 Census or earlier; Census is run every 5 years; the next is 2026]
+- [Geographic boundary mismatches between ABS suburb / SA2 and REIWA suburb data]
+- [REIWA data is suburb-level only; site-specific valuation requires a registered valuer]
 ```
 
 ## Preferred Sources
 
-Only use governmental, university, or non-profit data sources. Never cite commercial websites (e.g., Zillow, Redfin, RentCafe, Niche, Point2Homes, Neighborhood Scout).
+Use governmental, university, or industry-association data sources. Avoid commercial real estate aggregators (e.g. realestate.com.au search-result statistics, Domain consumer pages, OnTheHouse) — REIWA is the WA industry body equivalent and is the appropriate suburb data source.
 
 | Source | URL | Data |
-|--------|-----|------|
-| US Census Bureau | data.census.gov | Population, income, age, race, housing — Decennial Census and ACS |
-| Census QuickFacts | census.gov/quickfacts | Summary demographics by place, county, ZIP |
-| BLS Local Area Unemployment | bls.gov/lau/ | Unemployment rates by county/metro |
-| BLS Occupational Employment | bls.gov/oes/ | Employment by industry and occupation |
-| HUD User | huduser.gov | Fair market rents, housing affordability, CHAS data |
-| NYU Furman Center | furmancenter.org | NYC neighborhood-level housing and demographic profiles |
-| NYC Open Data | data.cityofnewyork.us | NYC-specific datasets (housing, permits, demographics) |
-| FRED (St. Louis Fed) | fred.stlouisfed.org | Median income, home prices, economic indicators by metro |
-| National Center for Education Statistics | nces.ed.gov | Educational attainment by geography |
-| CDC PLACES | cdc.gov/places/ | Health and socioeconomic indicators by census tract |
+|---|---|---|
+| ABS Census QuickStats | abs.gov.au/census/find-census-data/quickstats | Suburb / SA2 / LGA demographic snapshot |
+| ABS DataExplorer | dataexplorer.abs.gov.au | Custom Census tables, time series |
+| ABS Community Profiles | abs.gov.au/census/find-census-data/community-profiles | Detailed Census profile per geography |
+| .id Community (profile.id.com.au) | profile.id.com.au | Community profiles for many WA LGAs (City of Fremantle, Subiaco, Perth, Vincent, Stirling, Joondalup, etc.) |
+| .id Forecast (forecast.id.com.au) | forecast.id.com.au | LGA population and dwelling forecasts where available |
+| WA Tomorrow | wa.gov.au/government/publications/wa-tomorrow-population-forecasts | WA Government population projections by LGA |
+| REIWA | reiwa.com.au | Suburb median house / unit prices, rentals, sales activity (industry body — methodology disclosed) |
+| ABS Building Approvals | abs.gov.au/statistics/industry/building-and-construction/building-approvals-australia | New dwelling approvals by LGA |
+| ABS Housing Occupancy & Costs | abs.gov.au | Tenure, costs, mortgage stress |
+| Department of Communities — Housing | communities.wa.gov.au | Social and affordable housing context |
+| RBA Statistical Tables | rba.gov.au/statistics/tables | National economic indicators (cash rate, inflation, dwelling prices indices) |
+| WA Treasury Economic Data | treasury.wa.gov.au | State-level economic indicators |
+| Department of Education | education.wa.gov.au | Public school catchments and enrolments |
 
-### International
+### International (overseas projects)
 | Source | URL | Data |
-|--------|-----|------|
+|---|---|---|
 | World Bank Open Data | data.worldbank.org | Country-level demographics, economics |
-| UN Data | data.un.org | Population, urbanization, development indicators |
-| National statistics agencies | Varies | Each country's census/statistics bureau |
+| UN Data | data.un.org | Population, urbanisation, development indicators |
+| National statistics agencies | varies | Each country's census / statistics bureau |
 
 ## Guidelines
 
 - **Be factual.** Every claim should come from a search result. If you cannot find data, say "Not found in public sources" rather than guessing.
-- **Cite sources.** Include URLs in the Sources section for every page you pulled data from.
-- **Only use governmental, university, or non-profit sources.** Do not cite commercial real estate platforms, ad-supported aggregators, or crowd-sourced neighborhood sites.
+- **Cite sources.** Include URLs and access dates for every page consulted.
+- **Use governmental, university, or industry-association sources only.** Avoid commercial real estate aggregators and ad-supported neighbourhood-data sites.
 - **Be concise.** Use tables for quantitative data, bullet points for lists. No filler.
-- **Note data vintage.** Always state the year/source of demographic data (e.g., "2020 Census" or "ACS 2019-2023").
-- **Compare to benchmarks.** Always compare income, prices, and growth to metro and national figures.
-- **Use local units.** Imperial for US sites, metric for international sites. Include conversions in parentheses when useful.
+- **State the geography.** Always state the geographic scale you're reporting on (SA1 / SA2 / suburb / LGA / Greater Perth) and the data vintage (Census 2021, REIWA Q1 2026, etc.).
+- **Compare to benchmarks.** Always compare suburb income, prices, and growth to Greater Perth and / or WA figures.
+- **Use metric.** km² for area, AUD for currency, weekly income (ABS standard) — note "weekly" and "ex GST" / "incl. GST" where relevant.
+- **Note Census vintage.** ABS Census is every 5 years; 2021 is the most recent; 2026 will become available from late 2027. Flag if estimates are post-Census ERP rather than Census-direct.
 - **Ask once, then work.** After confirming the location, do all the research without interrupting the user. Present the finished brief.

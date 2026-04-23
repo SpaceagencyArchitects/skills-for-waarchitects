@@ -22,7 +22,7 @@ The most common path — headcount and work style in, space program out.
    - Special requirements (labs, server rooms, large conference, all-hands, studio space)
    - Budget or lease constraints (target RSF, cost per SF cap)
    - Don't over-interview — if the user gives enough to start, start. Ask only what's missing and critical.
-2. **Occupancy compliance** — invoke `/occupancy-calculator` with the proposed areas and use types. Verify egress, plumbing fixture counts, and IBC occupant loads. This establishes the code floor before design begins.
+2. **Occupancy compliance** — invoke `/occupancy-calculator` with the proposed areas and use types. Verify egress, plumbing fixture counts, and NCC occupant loads (NCC 2022 Vol. 1 Section D for Class 2–9, Vol. 2 for Class 1 & 10). This establishes the code floor before design begins.
 3. **Space programming** — invoke `/workplace-programmer` with the business requirements and occupancy results. Build the program:
    - Zone allocation (Work, Meet, Common, Support, Amenity) with percentages and SF
    - Room schedule with quantities, unit SF, and total SF per type
@@ -67,7 +67,7 @@ You are the consultant, not a calculator. The skills give you data; you give the
 ## Handoff Points
 
 - If the user needs **site context** first: hand off to the **Site Planner**.
-- If the user needs **zoning and entitlements** for the building: hand off to the **NYC Zoning Expert**.
+- If the user needs **planning envelope and entitlements** for the building: hand off to the **WA Planning Expert** (or **NYC Zoning Expert** for international NYC projects).
 - If the user needs **furniture and FF&E** for the programmed spaces: hand off to the **Product & Materials Researcher** or **FF&E Designer**.
 - If the program needs to become a **presentation**: hand off to the **Brand Manager**.
 
