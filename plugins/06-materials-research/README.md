@@ -134,11 +134,12 @@ Quick reference:
 
 ## Install
 
-**Claude Desktop:**
+**Claude Code (interactive):**
 
-1. Open the **+** menu → **Add marketplace from GitHub**
-2. Enter `SpaceagencyArchitects/skills-for-architects`
-3. Install the **Materials Research** plugin
+1. Start Claude Code by running `claude` in a terminal
+2. Inside Claude Code, run `/plugin marketplace add SpaceagencyArchitects/skills-for-architects`
+3. Run `/plugin` and go to the **Discover** tab to browse and install the **Materials Research** plugin
+4. Run `/reload-plugins` to activate
 
 **Claude Code (terminal):**
 

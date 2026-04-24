@@ -20,11 +20,12 @@ Three skills that handle visual production. The slide deck generator builds comp
 
 ## Install
 
-**Claude Desktop:**
+**Claude Code (interactive):**
 
-1. Open the **+** menu → **Add marketplace from GitHub**
-2. Enter `SpaceagencyArchitects/skills-for-architects`
-3. Install the **Presentations** plugin
+1. Start Claude Code by running `claude` in a terminal
+2. Inside Claude Code, run `/plugin marketplace add SpaceagencyArchitects/skills-for-architects`
+3. Run `/plugin` and go to the **Discover** tab to browse and install the **Presentations** plugin
+4. Run `/reload-plugins` to activate
 
 **Claude Code (terminal):**
 
