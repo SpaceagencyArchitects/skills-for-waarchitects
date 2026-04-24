@@ -1,12 +1,12 @@
 {
   "name": "00-due-diligence",
-  "version": "1.0.0",
-  "description": "NYC property data skills — landmarks, DOB permits, violations, ACRIS records, HPD, and BSA variances from NYC Open Data.",
+  "version": "1.1.0",
+  "description": "Property due diligence for Western Australia — Landgate, inHerit, LGA DA registers, SAT, DWER, DFES, AHIS, NatureMap.",
   "author": {
-    "name": "ALPA",
-    "url": "https://alpa.llc"
+    "name": "spaceagency",
+    "url": "https://spaceagencyarchitects.com"
   },
-  "keywords": ["nyc", "property", "building", "permits", "violations", "landmarks", "acris", "bsa", "hpd", "architecture"],
-  "homepage": "https://alpa.llc/plugins/due-diligence",
+  "keywords": ["wa", "western-australia", "property", "due-diligence", "landgate", "heritage", "inherit", "dfes", "bushfire", "architecture"],
+  "homepage": "https://spaceagencyarchitects.com",
   "license": "MIT"
 }

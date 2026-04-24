@@ -19,8 +19,8 @@ Print the following menu. Do not read any files — the menu is static.
 ```
 # Architect Skills — spaceagency architects (WA)
 
-**40 skills, 7 agents** — type /studio [your task] to get routed, or call any skill directly.
-Default jurisdiction: Western Australia. NYC and Uruguay skills retained at the skill level for international work.
+**32 skills, 7 agents** — type /studio [your task] to get routed, or call any skill directly.
+Default jurisdiction: Western Australia. Uruguay skills retained at the skill level for international work.
 
 ## Agents — describe your task, they figure out the rest
 
@@ -42,17 +42,9 @@ Default jurisdiction: Western Australia. NYC and Uruguay skills retained at the 
 /demographics-analysis [address] — ABS Census, REIWA, employment, age, housing
 /history [address] — Traditional Owners, heritage, architectural character, planned devt.
 /wa-property-report [address] — WA DD: Landgate, inHerit, LGA DA, SAT, DWER, DFES, AHIS
-/nyc-landmarks [address] — legacy NYC LPC landmark check
-/nyc-dob-permits [address] — legacy NYC DOB permit history
-/nyc-dob-violations [address] — legacy NYC DOB/ECB violations
-/nyc-acris [address] — legacy NYC property transactions
-/nyc-hpd [address] — legacy NYC HPD violations
-/nyc-bsa [address] — legacy NYC BSA variances
-/nyc-property-report [address] — legacy combined NYC report
 
 ### Zoning & Planning
 /planning-analysis-wa [address] — WA planning envelope: MRS / LPS / R-Codes / height / setbacks
-/zoning-analysis-nyc [address] — legacy NYC buildable envelope from PLUTO
 /zoning-analysis-uruguay — Maldonado, Uruguay lot analysis
 /zoning-envelope [report] — interactive 3D envelope viewer (metric or imperial)
 

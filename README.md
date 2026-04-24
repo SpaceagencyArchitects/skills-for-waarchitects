@@ -19,7 +19,7 @@
 
 This is a fork of [AlpacaLabsLLC/skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects) amended for WA practice. It teaches Claude spaceagency architects' workflows — WA site analysis, planning envelope against the R-Codes / LPS / MRS, due diligence against Landgate / inHerit / DFES / DWER, NCC-based programming, NATSPEC specifications, materials research, sustainability (Green Star / NABERS / Section J), and presentations.
 
-**7 agents**, **40 skills**, **7 rules**, and **3 hooks** across **9 plugins**. NYC and Uruguay skills are retained at the skill level for international work.
+**7 agents**, **32 skills**, **7 rules**, and **3 hooks** across **9 plugins**. Uruguay skills are retained at the skill level for international work.
 
 ## Architecture
 
@@ -37,9 +37,9 @@ Architect Skills
 │   └── brand-manager                    2 skills · decks + palettes
 │
 ├── plugins/
-│   ├── 00-due-diligence                 8 skills · WA (1) + NYC legacy (7)
+│   ├── 00-due-diligence                 1 skill  · WA
 │   ├── 01-site-planning                 4 skills · WA defaults, intl fallback
-│   ├── 02-zoning-analysis               4 skills · WA (1) + NYC + UY + 3D viewer
+│   ├── 02-zoning-analysis               3 skills · WA + UY + 3D viewer
 │   ├── 03-programming                   2 skills · NCC / AU programming [partial WA]
 │   ├── 04-specifications                1 skill · CSI MasterFormat [NATSPEC pending]
 │   ├── 05-sustainability                4 skills · EPDs (international + AU context)
@@ -112,9 +112,9 @@ Organized by project lifecycle — from due diligence through delivery.
 
 | # | Plugin | Skills | Description |
 |---|--------|--------|-------------|
-| 0 | [Due Diligence](./plugins/00-due-diligence) | 8 | WA: Landgate + inHerit + LGA DA + SAT + DWER + DFES + AHIS + NatureMap. Legacy NYC skills retained |
+| 0 | [Due Diligence](./plugins/00-due-diligence) | 1 | WA: Landgate + inHerit + LGA DA + SAT + DWER + DFES + AHIS + NatureMap |
 | 1 | [Site Planning](./plugins/01-site-planning) | 4 | BoM, Transperth, ABS, inHerit / SLWA / Trove — with international fallback |
-| 2 | [Zoning & Planning Analysis](./plugins/02-zoning-analysis) | 4 | WA planning envelope (MRS / LPS / R-Codes); NYC (PLUTO); Uruguay (TONE); 3D viewer (metric + imperial) |
+| 2 | [Zoning & Planning Analysis](./plugins/02-zoning-analysis) | 3 | WA planning envelope (MRS / LPS / R-Codes); Uruguay (TONE); 3D viewer (metric + imperial) |
 | 3 | [Programming](./plugins/03-programming) | 2 | Workplace space programs + occupancy loads (NCC migration pending) |
 | 4 | [Specifications](./plugins/04-specifications) | 1 | CSI outline specs (NATSPEC migration pending) |
 | 5 | [Sustainability](./plugins/05-sustainability) | 4 | EPD parsing / research / comparison / spec; international + AU context |
@@ -123,20 +123,13 @@ Organized by project lifecycle — from due diligence through delivery.
 | 8 | [Dispatcher](./plugins/08-dispatcher) | 2 | Studio router (`/studio`) and help menu (`/skills`) |
 
 <details>
-<summary><strong>All 40 skills</strong></summary>
+<summary><strong>All 32 skills</strong></summary>
 
 ### Due Diligence
 
 | Skill | Description |
 |---|---|
 | [`/wa-property-report`](./plugins/00-due-diligence/skills/wa-property-report) | **WA** — comprehensive DD: Landgate, inHerit, LGA DA, SAT, DWER, DFES, AHIS, NatureMap |
-| [`/nyc-landmarks`](./plugins/00-due-diligence/skills/nyc-landmarks) | Legacy — LPC landmark and historic district check |
-| [`/nyc-dob-permits`](./plugins/00-due-diligence/skills/nyc-dob-permits) | Legacy — DOB permit and filing history |
-| [`/nyc-dob-violations`](./plugins/00-due-diligence/skills/nyc-dob-violations) | Legacy — DOB and ECB violations |
-| [`/nyc-acris`](./plugins/00-due-diligence/skills/nyc-acris) | Legacy — ACRIS property transaction records |
-| [`/nyc-hpd`](./plugins/00-due-diligence/skills/nyc-hpd) | Legacy — HPD violations, complaints, registration |
-| [`/nyc-bsa`](./plugins/00-due-diligence/skills/nyc-bsa) | Legacy — BSA variances and special permits |
-| [`/nyc-property-report`](./plugins/00-due-diligence/skills/nyc-property-report) | Legacy — combined NYC property report |
 
 ### Site Planning
 
@@ -152,7 +145,6 @@ Organized by project lifecycle — from due diligence through delivery.
 | Skill | Description |
 |---|---|
 | [`/planning-analysis-wa`](./plugins/02-zoning-analysis/skills/planning-analysis-wa) | **WA** — planning envelope: MRS / LPS zone, R-Code, plot ratio, height, setbacks, heritage, BAL |
-| [`/zoning-analysis-nyc`](./plugins/02-zoning-analysis/skills/zoning-analysis-nyc) | Legacy — NYC buildable envelope from PLUTO |
 | [`/zoning-analysis-uruguay`](./plugins/02-zoning-analysis/skills/zoning-analysis-uruguay) | Maldonado, Uruguay |
 | [`/zoning-envelope`](./plugins/02-zoning-analysis/skills/zoning-envelope) | Interactive 3D envelope viewer — metric or imperial |
 
@@ -237,25 +229,6 @@ Event-driven automations — opt-in via Claude Code settings.
 | [pre-commit-spec-lint](./hooks/pre-commit-spec-lint.sh) | Before git commit | Flags malformed NATSPEC worksection numbers |
 
 See the [hooks directory](./hooks) for installation instructions.
-
-## Status — WA migration
-
-This fork is migrating the original NYC-focused Architecture Studio to WA practice. Current state:
-
-| Layer | Status |
-|---|---|
-| Rules | ✅ Complete — 7 rules amended, NATSPEC added, CSI superseded |
-| Hooks | ✅ Complete — WA keyword detection, NATSPEC lint |
-| Plugin 00 — Due Diligence | ✅ WA skill added; NYC legacy retained |
-| Plugin 01 — Site Planning | ✅ All 4 skills amended for WA defaults |
-| Plugin 02 — Zoning / Planning | ✅ WA skill added; NYC + Uruguay retained |
-| Plugin 03 — Programming | ⏳ Pending — IBC → NCC, ft² → m² migration |
-| Plugin 04 — Specifications | ⏳ Pending — CSI → NATSPEC spec writer |
-| Plugin 05 — Sustainability | ⏳ Pending — Green Star / NABERS / NCC Section J in skill files |
-| Plugin 06 — Materials Research | ✅ Jurisdiction-neutral; no changes needed |
-| Plugin 07 — Presentations | ✅ Jurisdiction-neutral; no changes needed |
-| Plugin 08 — Dispatcher | ✅ Router + menu updated |
-| Agents | ✅ wa-planning-expert added; other agents updated for WA context; legacy NYC agent removed (NYC skills retained) |
 
 ## Contributing
 

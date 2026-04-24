@@ -12,7 +12,7 @@
     {
       "name": "00-due-diligence",
       "source": "./plugins/00-due-diligence",
-      "description": "Property due diligence — Western Australia (Landgate, inHerit, LGA DA registers, SAT, DWER, DFES, AHIS, NatureMap) plus legacy NYC skills for overseas work."
+      "description": "Property due diligence for Western Australia — Landgate, inHerit, LGA DA registers, SAT, DWER, DFES, AHIS, NatureMap."
     },
     {
       "name": "01-site-planning",
@@ -22,7 +22,7 @@
     {
       "name": "02-zoning-analysis",
       "source": "./plugins/02-zoning-analysis",
-      "description": "Planning and zoning envelope analysis — Western Australia (MRS / LPS / R-Codes), New York City (PLUTO), and Maldonado, Uruguay (TONE). Includes interactive 3D envelope viewer."
+      "description": "Planning and zoning envelope analysis — Western Australia (MRS / LPS / R-Codes) and Maldonado, Uruguay (TONE). Includes interactive 3D envelope viewer."
     },
     {
       "name": "03-programming",

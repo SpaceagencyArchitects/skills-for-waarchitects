@@ -1,8 +1,8 @@
 # Due Diligence
 
-A Claude Code plugin for property due diligence. One comprehensive WA skill plus legacy NYC skills retained for overseas work.
+A Claude Code plugin for property due diligence in Western Australia. One comprehensive skill covers every major WA data source — title, heritage, DA history, environmental constraints — in a single guided workflow.
 
-**Default jurisdiction: Western Australia.**
+**Jurisdiction: Western Australia.**
 
 ## The Problem
 
@@ -12,7 +12,7 @@ Due diligence on a WA site means checking 8+ different data sources — Landgate
 
 **`/wa-property-report`** — one guided workflow that covers every major WA data source, captures findings in a consistent format, applies WA-specific interpretation (what a Memorial means, what an LHS Management Category A implies, what an AHIS Registered Site requires), and produces a single structured report with a risk summary, specialist consultant recommendations, and sources.
 
-The WA due diligence problem is different from the NYC one — most WA data sources don't have clean APIs (Landgate certified searches are paid; LGA DA registers vary; AHIS is legal-advice-dependent). The skill is honest about this: it's a guided workflow + structured output, not a PLUTO-equivalent data lookup.
+The WA due diligence problem is specific to WA data realities — most WA data sources don't have clean APIs (Landgate certified searches are paid; LGA DA registers vary; AHIS is legal-advice-dependent). The skill is honest about this: it's a guided workflow + structured output, not a database lookup.
 
 ```
 Site address + LGA + Lot/DP
@@ -46,20 +46,11 @@ Site address + LGA + Lot/DP
 
 ## Skills
 
-| Skill | Jurisdiction | Description |
-|---|---|---|
-| [wa-property-report](skills/wa-property-report/) | WA (default) | Comprehensive due-diligence across cadastre, title, heritage, DA history, SAT, contamination, bushfire, coastal, flood, Aboriginal heritage, flora/fauna, ASS, services |
-| [nyc-landmarks](skills/nyc-landmarks/) | NYC (overseas) | LPC landmark & historic district check |
-| [nyc-dob-permits](skills/nyc-dob-permits/) | NYC | DOB permit & filing history |
-| [nyc-dob-violations](skills/nyc-dob-violations/) | NYC | DOB + ECB violations |
-| [nyc-acris](skills/nyc-acris/) | NYC | ACRIS property transaction records |
-| [nyc-hpd](skills/nyc-hpd/) | NYC | HPD residential violations |
-| [nyc-bsa](skills/nyc-bsa/) | NYC | BSA variances |
-| [nyc-property-report](skills/nyc-property-report/) | NYC | Combined NYC report |
+| Skill | Description |
+|---|---|
+| [wa-property-report](skills/wa-property-report/) | Comprehensive due-diligence across cadastre, title, heritage, DA history, SAT, contamination, bushfire, coastal, flood, Aboriginal heritage, flora/fauna, ASS, services |
 
-NYC skills retained as a reference / for any overseas project where NYC applies. The WA workflow is the default for local practice.
-
-## Data Sources — WA
+## Data Sources
 
 | Source | Access | What it provides |
 |---|---|---|
@@ -75,11 +66,12 @@ NYC skills retained as a reference / for any overseas project where NYC applies.
 
 ## Install
 
-**Claude Desktop:**
+**Claude Code (interactive):**
 
-1. Open the **+** menu → **Add marketplace from GitHub**
-2. Enter `SpaceagencyArchitects/skills-for-architects`
-3. Install the **Due Diligence** plugin
+1. Start Claude Code by running `claude` in a terminal
+2. Inside Claude Code, run `/plugin marketplace add SpaceagencyArchitects/skills-for-architects`
+3. Run `/plugin` and go to the **Discover** tab to browse and install the **Due Diligence** plugin
+4. Run `/reload-plugins` to activate
 
 **Claude Code (terminal):**
 

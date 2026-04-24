@@ -2,7 +2,7 @@
 
 A Claude Code plugin for planning envelope analysis. Give it a site and it calculates the buildable envelope — plot ratio / FAR, height, setbacks, open space, permitted uses, parking, and incentives — using public data sources and the applicable planning instruments.
 
-**Default jurisdiction: Western Australia.** NYC and Uruguay skills are retained as overseas-project references.
+**Default jurisdiction: Western Australia.** A Uruguay (Maldonado) skill is retained as a legacy reference.
 
 ## The Problem
 
@@ -65,7 +65,6 @@ Per-jurisdiction skills that: identify the applicable layers, load the relevant 
 | Jurisdiction | Primary sources |
 |---|---|
 | Western Australia | [Landgate](https://maps.landgate.wa.gov.au/maps-landgate/registered/), [WAPC MyPlan](https://app-ll.planning.wa.gov.au/MyPlan/), LGA IntraMaps viewers, [inHerit](https://inherit.dplh.wa.gov.au/), [DFES BPA map](https://www.dfes.wa.gov.au/), bundled R-Codes + LPS files |
-| New York City | [NYC PLUTO](https://data.cityofnewyork.us/resource/64uk-42ks.json) (Socrata API), bundled NYC Zoning Resolution rules |
 | Uruguay (Maldonado) | Bundled TONE regulation files |
 
 ## Skills
@@ -73,9 +72,8 @@ Per-jurisdiction skills that: identify the applicable layers, load the relevant 
 | Skill | Jurisdiction | Description |
 |---|---|---|
 | [planning-analysis-wa](skills/planning-analysis-wa/) | WA (default) | Envelope analysis for any site in Western Australia — MRS / LPS zone, R-Code, plot ratio, height, setbacks, heritage, BAL. First LGA bundled: City of Fremantle LPS4 |
-| [zoning-analysis-nyc](skills/zoning-analysis-nyc/) | New York City | Buildable envelope from PLUTO — FAR, height, setbacks, use groups |
 | [zoning-analysis-uruguay](skills/zoning-analysis-uruguay/) | Maldonado, UY | Buildable envelope — FOS, FOT, height, setbacks |
-| [zoning-envelope](skills/zoning-envelope/) | Any | Interactive 3D envelope viewer — generates a self-contained HTML file from any zoning / planning analysis report. Supports both metric and imperial units |
+| [zoning-envelope](skills/zoning-envelope/) | Any | Interactive 3D envelope viewer — generates a self-contained HTML file from any planning analysis report. Supports both metric and imperial units |
 
 ## Adding a new LGA (WA)
 
@@ -87,11 +85,12 @@ The WA skill bundles City of Fremantle LPS4 to start. To add a new LGA:
 
 ## Install
 
-**Claude Desktop:**
+**Claude Code (interactive):**
 
-1. Open the **+** menu → **Add marketplace from GitHub**
-2. Enter `SpaceagencyArchitects/skills-for-architects` (your fork)
-3. Install the **Zoning Analysis** plugin
+1. Start Claude Code by running `claude` in a terminal
+2. Inside Claude Code, run `/plugin marketplace add SpaceagencyArchitects/skills-for-architects`
+3. Run `/plugin` and go to the **Discover** tab to browse and install the **Zoning Analysis** plugin
+4. Run `/reload-plugins` to activate
 
 **Claude Code (terminal):**
 

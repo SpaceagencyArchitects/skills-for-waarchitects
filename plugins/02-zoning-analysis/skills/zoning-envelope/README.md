@@ -8,32 +8,32 @@ Interactive 3D zoning envelope viewer as a [Claude Code](https://docs.anthropic.
 
 ```bash
 # Via plugin system
-claude plugin marketplace add AlpacaLabsLLC/skills-for-architects
+claude plugin marketplace add SpaceagencyArchitects/skills-for-architects
 claude plugin install 02-zoning-analysis@skills-for-architects
 
 # Or symlink just this skill
-git clone https://github.com/AlpacaLabsLLC/skills-for-architects.git
+git clone https://github.com/SpaceagencyArchitects/skills-for-architects.git
 ln -s $(pwd)/skills-for-architects/plugins/02-zoning-analysis/skills/zoning-envelope ~/.claude/skills/zoning-envelope
 ```
 
 ## Usage
 
-First, run a zoning analysis to generate a report:
+First, run a planning analysis to generate a report:
 
 ```
-/zoning-analysis-nyc 250 Hudson St, New York NY
+/planning-analysis-wa 48 Swanbourne St, Fremantle WA 6160
 ```
 
 Then generate the 3D viewer:
 
 ```
-/zoning-envelope path/to/zoning-analysis-250-hudson-st.md
+/zoning-envelope path/to/planning-analysis-48-swanbourne-st.md
 ```
 
 Or search by keyword:
 
 ```
-/zoning-envelope 250 hudson
+/zoning-envelope 48 swanbourne
 ```
 
 Or auto-detect the most recent report:
@@ -44,31 +44,31 @@ Or auto-detect the most recent report:
 
 ## What it renders
 
-- **Exact lot polygon** from GIS data (MapPLUTO for NYC) — not a simplified rectangle
-- **Setback zones** as colored ground overlays with dashed inset boundaries
+- **Exact lot polygon** from GIS data (Landgate for WA, TONE / SIG for Uruguay) — not a simplified rectangle
+- **Setback zones** as coloured ground overlays with dashed inset boundaries
 - **Buildable volumes** — base, tower, galibo — extruded from the lot polygon at correct heights
 - **Height cap** — amber plane at maximum building height
 - **Edge-length labels** on lot boundary edges
 - **Height labels** with dashed reference lines
-- **Parameters panel** — FAR, max floor area, height limits, setbacks
+- **Parameters panel** — plot ratio, max GFA, height limits, setbacks
 - **Interactive controls** — orbit, zoom, pan (Three.js OrbitControls)
 
 ## How it works
 
-The skill reads the `## Envelope Data` JSON block from a zoning analysis report. This block contains:
+The skill reads the `## Envelope Data` JSON block from a planning analysis report. This block contains:
 
 ```json
 {
-  "lot_poly": [[155.8, 171.8], [144.6, 85.7], ...],
-  "unit": "ft",
-  "setbacks": { "front": 0, "rear": 20, "lateral1": 0, "lateral2": 0 },
+  "lot_poly": [[0.0, 40.2], [15.3, 40.2], [15.3, 0.0], [0.0, 0.0]],
+  "unit": "m",
+  "setbacks": { "front": 4, "rear": 3, "lateral1": 1.5, "lateral2": 1.5 },
   "volumes": [
-    { "type": "base", "inset": 20, "h_bottom": 0, "h_top": 85, "label": "base" },
-    { "type": "tower", "inset": 10, "h_bottom": 85, "h_top": 290, "label": "tower" }
+    { "type": "base", "inset": 1.5, "h_bottom": 0, "h_top": 7, "label": "base" },
+    { "type": "upper", "inset": 3, "h_bottom": 7, "h_top": 11, "label": "upper" }
   ],
-  "height_cap": 290,
-  "info": { "title": "250 Hudson Street", "zone": "C6-4A", ... },
-  "stats": { "Commercial FAR": "10.0", ... }
+  "height_cap": 11,
+  "info": { "title": "48 Swanbourne St", "zone": "R-AC3", ... },
+  "stats": { "Plot Ratio": "0.7", ... }
 }
 ```
 
@@ -83,17 +83,13 @@ The skill then:
 ## Key features
 
 - **Self-correcting polygon inset** — automatically detects and corrects for different polygon winding directions across data sources
-- **Multi-volume envelopes** — base + tower for contextual districts, base + galibo for TONE districts
+- **Multi-volume envelopes** — base + upper volume for R-Code setback envelopes; base + galibo for TONE districts
 - **Multi-scenario support** — toggle buttons for comparing development scenarios (individual, party-wall, unified)
-- **Works with any polygon source** — NYC MapPLUTO (WGS84), Uruguay GIS (EPSG:3857), or manual coordinates
+- **Works with any polygon source** — Landgate, Uruguay GIS (EPSG:3857), or manual coordinates
 
 ## Dependency
 
-This skill requires a zoning analysis report as input. It does not perform zoning calculations — run `/zoning-analysis-nyc` first.
-
-## Demo
-
-[Live demo (250 Hudson Street)](https://alpa.llc/demos/zoning-envelope.html)
+This skill requires a planning analysis report as input. It does not perform planning calculations — run `/planning-analysis-wa` first.
 
 ## License
 

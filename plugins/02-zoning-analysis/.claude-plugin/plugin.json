@@ -1,12 +1,12 @@
 {
   "name": "02-zoning-analysis",
-  "version": "1.1.0",
-  "description": "Zoning analysis skills — envelope calculations, setbacks, height limits, and land-use regulations.",
+  "version": "1.2.0",
+  "description": "Planning and zoning envelope analysis — Western Australia (MRS / LPS / R-Codes) and Maldonado, Uruguay (TONE). Includes interactive 3D envelope viewer.",
   "author": {
-    "name": "ALPA",
-    "url": "https://alpa.llc"
+    "name": "spaceagency",
+    "url": "https://spaceagencyarchitects.com"
   },
-  "keywords": ["zoning", "land-use", "entitlements", "envelope", "setbacks", "architecture", "NYC", "PLUTO"],
-  "homepage": "https://alpa.llc/skills",
+  "keywords": ["planning", "zoning", "envelope", "setbacks", "r-codes", "lps", "wa", "western-australia", "architecture"],
+  "homepage": "https://spaceagencyarchitects.com",
   "license": "MIT"
 }
