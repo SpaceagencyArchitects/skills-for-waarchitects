@@ -21,7 +21,7 @@ Produce a comprehensive due-diligence report for a site in Western Australia bef
 
 ## Honest scope
 
-This skill is a **guided workflow plus structured output**. WA due diligence can't be automated in the way NYC PLUTO can — the relevant data lives across Landgate (paid certified searches), inHerit (free search), DWER Contaminated Sites (free but awkward), LGA DA registers (each LGA's portal differs), SAT (free search), AHIS (free but legal interpretation needed), and Certificate of Title documents (paid).
+This skill is a **guided workflow plus structured output**. WA due diligence can't be reduced to a single API lookup — the relevant data lives across Landgate (paid certified searches), inHerit (free search), DWER Contaminated Sites (free but awkward), LGA DA registers (each LGA's portal differs), SAT (free search), AHIS (free but legal interpretation needed), and Certificate of Title documents (paid).
 
 What this skill does:
 - Walks the user through every source systematically so nothing gets missed
