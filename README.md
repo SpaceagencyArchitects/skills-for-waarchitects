@@ -19,7 +19,7 @@
 
 This is a fork of [AlpacaLabsLLC/skills-for-architects](https://github.com/AlpacaLabsLLC/skills-for-architects) amended for WA practice. It teaches Claude spaceagency architects' workflows — WA site analysis, planning envelope against the R-Codes / LPS / MRS, due diligence against Landgate / inHerit / DFES / DWER, NCC-based programming, NATSPEC specifications, materials research, sustainability (Green Star / NABERS / Section J), and presentations.
 
-**8 agents**, **40 skills**, **7 rules**, and **3 hooks** across **9 plugins**. NYC and Uruguay skills are retained for international work.
+**7 agents**, **40 skills**, **7 rules**, and **3 hooks** across **9 plugins**. NYC and Uruguay skills are retained at the skill level for international work.
 
 ## Architecture
 
@@ -30,7 +30,6 @@ Architect Skills
 ├── agents/
 │   ├── site-planner                     4 skills · site research + synthesis
 │   ├── wa-planning-expert               3 skills · WA DD + planning envelope + 3D
-│   ├── nyc-zoning-expert                9 skills · legacy NYC DD + zoning + 3D
 │   ├── workplace-strategist             2 skills · occupancy (NCC) + programming
 │   ├── product-and-materials-researcher 5 skills · find, extract, tag
 │   ├── ffe-designer                     7 skills · schedule, QA, export
@@ -99,7 +98,6 @@ Agents are the orchestration layer. Describe your task — the agent decides whi
 |-------|--------|-------------|
 | [site-planner](./agents/site-planner.md) | Site Planning | Climate (BoM), mobility (Transperth), demographics (ABS), heritage / context (inHerit, SLWA, Trove) — synthesised into a single site brief |
 | [wa-planning-expert](./agents/wa-planning-expert.md) | **WA DD + Planning** (default) | Full WA due diligence + planning envelope — title, heritage, DA history, R-Codes / LPS envelope, 3D viewer, approval pathway |
-| [nyc-zoning-expert](./agents/nyc-zoning-expert.md) | NYC (legacy / international) | Full NYC property + zoning analysis for overseas projects |
 | [workplace-strategist](./agents/workplace-strategist.md) | Programming | Headcount + work style → space program, occupancy (NCC 2022 Section D), room schedule |
 | [product-and-materials-researcher](./agents/product-and-materials-researcher.md) | Materials Research | Finds products from a brief, extracts specs from URLs / PDFs, tags and classifies, finds alternatives |
 | [ffe-designer](./agents/ffe-designer.md) | FF&E Design | Builds clean schedules from messy inputs, composes room packages, runs QA, exports to dealer formats |
@@ -257,7 +255,7 @@ This fork is migrating the original NYC-focused Architecture Studio to WA practi
 | Plugin 06 — Materials Research | ✅ Jurisdiction-neutral; no changes needed |
 | Plugin 07 — Presentations | ✅ Jurisdiction-neutral; no changes needed |
 | Plugin 08 — Dispatcher | ✅ Router + menu updated |
-| Agents | ✅ wa-planning-expert added; other agents updated for WA context |
+| Agents | ✅ wa-planning-expert added; other agents updated for WA context; legacy NYC agent removed (NYC skills retained) |
 
 ## Contributing
 

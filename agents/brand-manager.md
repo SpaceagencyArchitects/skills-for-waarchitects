@@ -85,7 +85,7 @@ The user has several outputs from different agents or sessions and needs them un
 
 ## Handoff Points
 
-- If the user needs **content** for the deck (analysis, data, research): hand off to the appropriate agent — Site Planner, WA Planning Expert, NYC Zoning Expert, Workplace Strategist, or Sustainability Specialist.
+- If the user needs **content** for the deck (analysis, data, research): hand off to the appropriate agent — Site Planner, WA Planning Expert, Workplace Strategist, or Sustainability Specialist.
 - If the user needs **product images** or an FF&E schedule for a presentation: hand off to the **FF&E Designer**.
 - If the user needs **project photos resized** for web, social, slides, or print: handle it yourself with `/resize-images` (Path D).
 - You don't generate the analysis — you present it.

@@ -19,8 +19,8 @@ Print the following menu. Do not read any files — the menu is static.
 ```
 # Architect Skills — spaceagency architects (WA)
 
-**40 skills, 8 agents** — type /studio [your task] to get routed, or call any skill directly.
-Default jurisdiction: Western Australia. NYC and Uruguay routes retained for international work.
+**40 skills, 7 agents** — type /studio [your task] to get routed, or call any skill directly.
+Default jurisdiction: Western Australia. NYC and Uruguay skills retained at the skill level for international work.
 
 ## Agents — describe your task, they figure out the rest
 
@@ -28,7 +28,6 @@ Default jurisdiction: Western Australia. NYC and Uruguay routes retained for int
 |---|---|
 | Site Planner | Full site brief — climate (BoM), transit (Transperth), demographics (ABS), history |
 | WA Planning Expert | WA DD + planning envelope — title, heritage, R-Codes / LPS, 3D viewer |
-| NYC Zoning Expert | Legacy — NYC property + zoning, FAR, buildable envelope, 3D viewer |
 | Workplace Strategist | Space programs — headcount to occupancy (NCC) to room schedules |
 | Product & Materials Researcher | Find products from a brief, extract specs from URLs/PDFs, find alternatives |
 | FF&E Designer | Build schedules from messy inputs, compose room packages, QA, export |

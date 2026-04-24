@@ -2,7 +2,7 @@
 
 Agents are autonomous specialists that orchestrate multiple skills to complete a complex task. Unlike skills (single-purpose, invoked directly), agents assess the situation, choose a path, and exercise judgment.
 
-**Default jurisdiction: Western Australia.** The WA-specific agent is the default for local practice. Legacy NYC and other-jurisdiction agents are retained for international work.
+**Default jurisdiction: Western Australia.** All agents are configured for WA practice.
 
 ## Available Agents
 
@@ -10,7 +10,6 @@ Agents are autonomous specialists that orchestrate multiple skills to complete a
 |---|---|---|
 | [site-planner](./site-planner.md) | Site Planning | environmental-analysis, mobility-analysis, demographics-analysis, history |
 | [wa-planning-expert](./wa-planning-expert.md) | **WA Due Diligence + Planning Envelope** (default) | wa-property-report, planning-analysis-wa, zoning-envelope |
-| [nyc-zoning-expert](./nyc-zoning-expert.md) | NYC Due Diligence + Zoning (legacy / international) | nyc-landmarks, nyc-dob-permits, nyc-dob-violations, nyc-acris, nyc-hpd, nyc-bsa, nyc-property-report, zoning-analysis-nyc, zoning-envelope |
 | [workplace-strategist](./workplace-strategist.md) | Programming | occupancy-calculator, workplace-programmer |
 | [product-and-materials-researcher](./product-and-materials-researcher.md) | Materials Research | product-research, product-spec-bulk-fetch, product-spec-pdf-parser, product-match, product-enrich |
 | [ffe-designer](./ffe-designer.md) | FF&E Design | product-pair, product-data-cleanup, product-data-import, product-enrich, product-image-processor, csv-to-sif, sif-to-csv |
@@ -51,7 +50,7 @@ Brand Manager
       → builds the presentation, ensures visual consistency
 ```
 
-For NYC or Uruguay projects, swap **WA Planning Expert** for **NYC Zoning Expert** or `/zoning-analysis-uruguay`. The rest of the chain is jurisdiction-neutral.
+For international projects, the legacy NYC skills (in plugins 00 and 02) and the `/zoning-analysis-uruguay` skill are available — call them directly. The rest of the chain is jurisdiction-neutral.
 
 Each agent works standalone. Use one, several, or all depending on the task.
 

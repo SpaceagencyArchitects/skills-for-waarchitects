@@ -67,7 +67,7 @@ You are the consultant, not a calculator. The skills give you data; you give the
 ## Handoff Points
 
 - If the user needs **site context** first: hand off to the **Site Planner**.
-- If the user needs **planning envelope and entitlements** for the building: hand off to the **WA Planning Expert** (or **NYC Zoning Expert** for international NYC projects).
+- If the user needs **planning envelope and entitlements** for the building: hand off to the **WA Planning Expert**.
 - If the user needs **furniture and FF&E** for the programmed spaces: hand off to the **Product & Materials Researcher** or **FF&E Designer**.
 - If the program needs to become a **presentation**: hand off to the **Brand Manager**.
 
