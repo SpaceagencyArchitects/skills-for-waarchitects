@@ -20,7 +20,7 @@ Assess what the user needs and choose the right path:
 The user has materials or products and wants to understand their environmental impact.
 
 1. **Identify the materials** — list what needs evaluation. Accept product names, CSI divisions, or general material types (e.g., "CLT", "steel stud framing", "terrazzo").
-2. **Find EPDs** — invoke `/epd-research` for each material to search EC3, UL Environment, Environdec, and manufacturer registries.
+2. **Find EPDs** — invoke `/epd-research` for each material to search AU registries (EPD Australasia, GECA, Global GreenTag) and international registries (EC3, UL Environment, Environdec) plus manufacturer registries.
 3. **Parse any PDFs** — if the user provides EPD documents directly, invoke `/epd-parser` to extract structured data.
 4. **Compare options** — invoke `/epd-compare` to present side-by-side GWP comparisons across alternatives. Normalize declared units and flag system boundary mismatches.
 5. **Present** — return an environmental profile with GWP per declared unit, life cycle stages covered, certifications, and a recommendation.
@@ -36,11 +36,11 @@ The user has two or more specific products and wants to know which is better env
 
 ### Path C: Specification Writing
 
-The user needs CSI spec sections that require EPDs and set GWP limits.
+The user needs NATSPEC worksections (CSI fallback for international) that require EPDs and set GWP limits.
 
-1. **Identify the sections** — which CSI divisions or materials need EPD requirements?
+1. **Identify the sections** — which NATSPEC worksections (or CSI divisions, for international projects) or materials need EPD requirements?
 2. **Research benchmarks** — invoke `/epd-research` to understand current industry GWP ranges for each material category.
-3. **Write specs** — invoke `/epd-to-spec` to generate specification sections with EPD submission requirements and maximum GWP thresholds calibrated to achievable-but-ambitious levels.
+3. **Write specs** — invoke `/epd-to-spec` to generate specification sections with EPD submission requirements and maximum GWP thresholds calibrated to achievable-but-ambitious levels. Output defaults to NATSPEC worksection format; CSI format available for international projects.
 4. **Present** — return the spec sections, noting which thresholds are aggressive vs. conservative relative to market averages.
 
 ### Path D: Certification Compliance Check
@@ -64,7 +64,7 @@ The user needs to verify material selections meet green building certification r
 ```
 ### [Material / Product Name]
 
-- **EPD Program Operator:** [e.g., UL Environment, IBU, Environdec]
+- **EPD Programme Operator:** [e.g., EPD Australasia, UL Environment, IBU, Environdec]
 - **EPD Number:** [registration number]
 - **Valid Through:** [expiration date]
 - **Declared Unit:** [e.g., 1 m² at 200mm thickness]

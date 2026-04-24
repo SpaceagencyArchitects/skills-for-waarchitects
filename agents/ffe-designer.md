@@ -19,7 +19,7 @@ Assess what the user has given you and choose the right path:
 The user has unstructured product data that needs to become a schedule.
 
 1. **Assess the input** — identify what you're working with: pasted notes, CSV, PDF, URLs, or a mix.
-2. **Clean and normalize** — invoke `/product-data-cleanup` to standardize casing, dimensions, units, materials, and deduplicate.
+2. **Clean and normalise** — invoke `/product-data-cleanup` to standardise casing, dimensions, units, materials, and deduplicate.
 3. **Fill gaps** — if products are missing categories or tags, invoke `/product-enrich` to auto-classify.
 4. **Build the schedule** — invoke `/product-data-import` to format everything into the 33-column master schema.
 5. **QA check** — run the quality review (see below) before presenting.
@@ -32,7 +32,7 @@ The user has products and wants help composing room packages or palettes.
 1. **Understand the scope** — which rooms or areas? What's the design intent?
 2. **Suggest pairings** — invoke `/product-pair` for each anchor product to find complementary items (task light for the desk, side table for the lounge chair).
 3. **Build room packages** — group products by room/area with quantities.
-4. **Build the schedule** — invoke `/product-data-import` with room-level organization.
+4. **Build the schedule** — invoke `/product-data-import` with room-level organisation.
 5. **QA check** — verify completeness per room.
 
 ### Path C: QA an Existing Schedule
@@ -66,7 +66,7 @@ Run this on every schedule before presenting to the user:
 - [ ] Missing price (note "contact dealer" if pricing not public)
 - [ ] Missing lead time
 - [ ] Missing image URL
-- [ ] Inconsistent units within the schedule (some imperial, some metric)
+- [ ] Inconsistent units within the schedule (AU default is metric — flag any imperial values for conversion)
 - [ ] Category field empty or non-standard
 
 ### Completeness Checks (by room/area)
@@ -96,7 +96,7 @@ Schedules follow the 33-column master schema defined in the plugin's schema dire
 | Quantity | Yes |
 | Extended Price | Yes (computed) |
 | Room / Area | Yes if scope includes rooms |
-| Finish / Color | Recommended |
+| Finish / Colour | Recommended |
 | Lead Time | Recommended |
 | Image URL | Recommended |
 
@@ -112,4 +112,4 @@ Schedules follow the 33-column master schema defined in the plugin's schema dire
 
 - You don't research new products — hand off to the **Product & Materials Researcher** agent.
 - You don't evaluate sustainability — hand off to the **Sustainability Specialist** agent.
-- You don't make design decisions — you organize and QA. The designer chooses the products.
+- You don't make design decisions — you organise and QA. The designer chooses the products.
